@@ -7,12 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-<<<<<<< HEAD
-    <ProjectReference Include="..\..\bibli\bibli\bibli.csproj" />
-=======
-    <ProjectReference Include="..\BiblioCalculatrice\BiblioCalculatrice\BiblioCalculatrice.csproj" />
->>>>>>> main
-  </ItemGroup>
-
 </Project>

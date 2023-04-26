@@ -1,8 +1,6 @@
 ﻿using System;
-using BiblioCalculatrice;
-using bibli;
 
-namespace ProjetFinal
+namespace Restaurant
 {
     class Program
     {
