@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Restaurant
 {
     partial class Ingredient
     {
-        string nom;
+        public string nom { get; set; }
         int calories;
         string qualite;
         double prix;
+
+
         
     }
 }

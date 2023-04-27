@@ -8,10 +8,10 @@ namespace Restaurant
 {
     partial class Plats
     {
-        string nom;
+        public string nom { get; set; }
         int prix;  
         int prixCoutant;
         int tempsCuisson;
-        Ingredient[] ingrediant;
+        public Ingredient[] ingredient { get; set; }
     }
 }
