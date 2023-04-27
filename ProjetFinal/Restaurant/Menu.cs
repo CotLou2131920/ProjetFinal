@@ -9,7 +9,10 @@ namespace Restaurant
     partial class Menu
     {
         int maxPlats { get; set; }
-        List<Plats> platsDispo;
+        public List<Plats> platsDispo { get; set; }
         List<Plats> platsMenu;
+
+        
+            
     }
 }

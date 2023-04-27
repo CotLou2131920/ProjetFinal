@@ -8,11 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="Humanizer.Core" Version="2.14.1" />
   </ItemGroup>
 
   <ItemGroup>
+=======
+<<<<<<< HEAD
+    <ProjectReference Include="..\..\bibli\bibli\bibli.csproj" />
+=======
+>>>>>>> eac9da92a75ecc1b302a3b10a52b105eca98d739
     <ProjectReference Include="..\BiblioCalculatrice\BiblioCalculatrice\BiblioCalculatrice.csproj" />
+>>>>>>> main
   </ItemGroup>
 
 </Project>

@@ -20,5 +20,12 @@ namespace Restaurant
         string nomComplet;
         Rarete rare;
         
+        public Personne(string prenom, string nom, Rarete rarete)
+        {
+            nomComplet = prenom + " " + nom;
+            rare = rarete;
+           
+        }
     }
 }
+

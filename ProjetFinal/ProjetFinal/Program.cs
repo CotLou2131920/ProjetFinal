@@ -1,5 +1,6 @@
 ﻿using System;
 using BiblioCalculatrice;
+using bibli;
 
 namespace ProjetFinal
 {
@@ -7,7 +8,7 @@ namespace ProjetFinal
     {
         static void Main(string[] args)
         {
-
+            
 
         }
     }
