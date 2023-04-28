@@ -10,8 +10,9 @@ namespace Restaurant
     {
         public string nom { get; set; }
         int prix;  
-        int prixCoutant;
-        int tempsCuisson;
+        public double prixCoutant { get; set; }
+        public int PrixAchat { get; set; }
+        public int tempsCuisson { get; set; }
         public Ingredient[] ingredient { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Restaurant
         public string nom { get; set; }
         int calories;
         string qualite;
-        double prix;
+        public double prix { get; set; }
 
 
         
