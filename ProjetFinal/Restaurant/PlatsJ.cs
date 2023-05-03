@@ -9,6 +9,10 @@ namespace Restaurant
 {
     partial class Plats
     {
+        public Plats()
+        {
+            
+        }
         [JsonConstructor]
         public Plats(string nom, int tempsCuisson,int prixAchat, string[] ingredients)
         {
@@ -17,7 +21,8 @@ namespace Restaurant
             this.tempsCuisson = tempsCuisson;
             PrixAchat = prixAchat;
             this.ingredient = AjoutIngrediantsPlat(ingredients, IngredientsPossibles);
-            prixCoutant = CalculPrixCoutant(ingredient);
+            prixCoutant = (int)CalculPrixCoutant(ingredient);
+            prixMenu = (int)prixCoutant;
         }
         public double CalculPrixCoutant(Ingredient[] tabIngredient)
         {
@@ -49,6 +54,13 @@ namespace Restaurant
                 tabIngredients[i] = newIngredients[i];
             }
             return tabIngredients;
+        }
+        public string AfficherIngredients()
+        {
+            string msg = "";
+            foreach (Ingredient i in ingredient)
+                msg += i.nom+ "\n";
+            return msg;
         }
     }
 }

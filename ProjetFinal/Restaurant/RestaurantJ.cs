@@ -17,32 +17,44 @@ namespace Restaurant
             IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>("json_ingredient.json");
             PlatsPossibles = new List<Plats>();
             PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>("json_plats.json");
-            foreach(Plats p in PlatsPossibles)
-            {
-                Console.WriteLine("Nom de plat:");
-                Console.WriteLine(p.nom);
-                Console.WriteLine("Ingredients:");
-                foreach (Ingredient n in p.ingredient)
-                {
-                    Console.WriteLine(n.nom);
-                }
-            }
+            //foreach(Plats p in PlatsPossibles)
+            //{
+            //    Console.WriteLine("Nom de plat:");
+            //    Console.WriteLine(p.nom);
+            //    Console.WriteLine("Ingredients:");
+            //    foreach (Ingredient n in p.ingredient)
+            //    {
+            //        Console.WriteLine(n.nom);
+            //    }
+            //    Console.WriteLine("");
+            //}
             IngredientsDepart();
-
-
-            //foreach (var i in stock)
-            //    Console.WriteLine(i.nom);
+            PlatsDepart();
+            AfficherInventaire();
 
         }
         public void IngredientsDepart()
         {
             stock = new List<Ingredient>();
-            stock.Add(RechercheIngredient("Oeuf"));
-            stock.Add(RechercheIngredient("Oeuf"));
-            stock.Add(RechercheIngredient("Lait"));
-            stock.Add(RechercheIngredient("Sel"));
-            stock.Add(RechercheIngredient("Poivre"));
-            stock.Add(RechercheIngredient("Sel"));
+            for(int i = 0; i < 10; i++)
+                stock.Add(RechercheIngredient("Pâtes"));
+            for (int i = 0; i < 10; i++)
+                stock.Add(RechercheIngredient("Oeuf"));
+            for (int i = 0; i < 10; i++)
+                stock.Add(RechercheIngredient("Sauce"));
+            for (int i = 0; i < 15; i++)
+                stock.Add(RechercheIngredient("Tomate"));
+            for (int i = 0; i < 10; i++)
+                stock.Add(RechercheIngredient("Boeuf"));
+            for (int i = 0; i < 10; i++)
+                stock.Add(RechercheIngredient("Pain"));
+            for (int i = 0; i < 15; i++)
+                stock.Add(RechercheIngredient("Laitue"));
+            for (int i = 0; i < 10; i++)
+                stock.Add(RechercheIngredient("Vinegraite"));
+            for (int i = 0; i < 20; i++)
+                stock.Add(RechercheIngredient("Farine"));
+          
         }
         public Ingredient RechercheIngredient(string nom)
         {
@@ -58,6 +70,59 @@ namespace Restaurant
         public void PlatsDepart()
         {
             PlatsApris = new List<Plats>();
+            PlatsApris.Add(RecherchePlat("Salade Fraiche"));
+            PlatsApris.Add(RecherchePlat("Hamburger"));
+            PlatsApris.Add(RecherchePlat("Spaghetti"));
+        }
+        public Plats RecherchePlat(string nom)
+        {
+            foreach (Plats p in PlatsPossibles)
+            {
+                if (p.nom == nom)
+                {
+                    return p;
+                }
+            }
+            return new Plats();
+        }
+        public bool CheckDispoPlat(Plats platVoulu)
+        {
+            List<Ingredient> copieStock = stock;
+            bool ingredientExiste;
+
+            foreach (Ingredient p in platVoulu.ingredient)
+            {
+                ingredientExiste = false;
+                for (int i = 0; i < copieStock.Count; i++)
+                {
+                    if(p.nom == copieStock[i].nom)
+                    {
+                        copieStock.Remove(copieStock[i]);
+                        ingredientExiste = true;
+                        break;
+                    }
+                }
+                if (!ingredientExiste)
+                {
+                    return false;
+                }
+            }
+            stock = copieStock;
+            return true;
+        }
+        public void AfficherInventaire()
+        {
+            var g = stock.GroupBy(i => i).OrderBy(group => group.Key.nom);
+
+            foreach (var grp in g)
+            {
+                if(grp.Key.nom != "")
+                    Console.WriteLine( grp.Key.nom+": "+grp.Count());
+            }
+        }
+        public void Cuisson()
+        {
+
         }
     }
 }
