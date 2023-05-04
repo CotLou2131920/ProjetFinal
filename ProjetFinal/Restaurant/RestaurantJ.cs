@@ -8,18 +8,11 @@ namespace Restaurant
 {
     partial class Restaurant
     {
-        List<Ingredient> IngredientsPossibles;
-        List<Plats> PlatsPossibles;
-        Menu menu;
+        
         public void Main2()
         {
-            IngredientsPossibles = new List<Ingredient>();
-            IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>("json_ingredient.json");
-            PlatsPossibles = new List<Plats>();
-            PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>("json_plats.json");
-
-            IngredientsDepart();
-            PlatsDepart();
+            
+            
 
             menu = new Menu(PlatsDepart());
             Menu();

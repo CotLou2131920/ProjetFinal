@@ -10,12 +10,34 @@ namespace Restaurant
     {
         static List<string> listNom = new List<string>();
         static List<string> listPrenom = new List<string>();
-        static Random ramd = new Random();
+        static Random rand = new Random();
 
+        
         static public void RemplirListe()
         {
             AjouterNom();
             AjouterPrenom();
+        }
+
+        static public string FabriquerNom()
+        {
+            return listNom[rand.Next(listNom.Count)];
+        }
+
+        static public string FabriquerPrenom()
+        {
+            return listPrenom[rand.Next(listPrenom.Count)];
+        }
+        static public void InitialiseNom()
+        {
+            try
+            {
+                FabriqueNom.RemplirListe();
+            }
+            catch (Exception ex )
+            {
+                Console.WriteLine("Une erreur est survenue lors de la lecture du fichier : " + ex.Message);
+            }
         }
 
         static void AjouterNom()

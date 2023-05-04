@@ -14,9 +14,9 @@ namespace Restaurant
         competant, // Rien
         Bon, // 40% bon plats || 50% correct || 10% mauvais
         Chef, // +1$ PrixCoutant chaque plats 
-        polie, // +1 satisfaction
+        polie, // +1 Cote restaurant 
         Rapide, // +1 Action
-        qualifie // +1 Cote restaurant 
+        qualifie // +1 satisfaction
 
     }
     partial class Employer : Personne
@@ -67,6 +67,14 @@ namespace Restaurant
                 case Rarete.legendaire: salaire += 5; break;
             }
             return salaire;
+        }
+
+        public override string ToString()
+        {
+            string info = $"Nom : {nomComplet}\n" +
+                $"Salaire : {salaire}\n" +
+                $"Effet : {effet}";
+            return info;
         }
     }
 }
