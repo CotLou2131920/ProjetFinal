@@ -9,13 +9,29 @@ namespace Restaurant
 {
     partial class Plats
     {
+        public Plats()
+        {
+            
+        }
         [JsonConstructor]
-        public Plats(string nom, int tempsCuisson, string[] ingredients)
+        public Plats(string nom, int tempsCuisson,int prixAchat, string[] ingredients)
         {
             List<Ingredient> IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>("json_ingredient.json");
             this.nom = nom;
             this.tempsCuisson = tempsCuisson;
+            PrixAchat = prixAchat;
             this.ingredient = AjoutIngrediantsPlat(ingredients, IngredientsPossibles);
+            prixCoutant = (int)CalculPrixCoutant(ingredient);
+            prixMenu = (int)prixCoutant;
+        }
+        public double CalculPrixCoutant(Ingredient[] tabIngredient)
+        {
+            double prix = 0;
+            foreach (Ingredient i in tabIngredient)
+            {
+                prix += i.prix;
+            }
+            return prix;
         }
         public Ingredient[] AjoutIngrediantsPlat(string[] list, List<Ingredient> IngredientsPossibles)
         {
@@ -38,6 +54,13 @@ namespace Restaurant
                 tabIngredients[i] = newIngredients[i];
             }
             return tabIngredients;
+        }
+        public string AfficherIngredients()
+        {
+            string msg = "Ingredients:\n";
+            foreach (Ingredient i in ingredient)
+                msg += i.nom+ "\n";
+            return msg;
         }
     }
 }
