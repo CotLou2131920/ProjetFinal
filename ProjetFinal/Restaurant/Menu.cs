@@ -11,5 +11,26 @@ namespace Restaurant
         int maxPlats { get; set; }
         List<Plats> platsDispo;
         List<Plats> platsMenu;
+
+        public Menu(List<Plats> platsDepart,int max = 4)
+        {
+            maxPlats = max;
+            platsDispo = new List<Plats>();
+            platsMenu = new List<Plats>();
+            InitailizeList(platsDepart);
+        }
+        public void InitailizeList(List<Plats> plats)
+        {
+            for(int i = 0; i < plats.Count; i++)
+            {
+                platsDispo.Add(plats[i]);
+            }
+            for (int i = 0; i < plats.Count; i++)
+            {
+                platsMenu.Add(plats[i]);
+            }
+        }
+
+
     }
 }

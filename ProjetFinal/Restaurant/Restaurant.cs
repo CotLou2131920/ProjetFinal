@@ -15,5 +15,29 @@ namespace Restaurant
         List<Employer> employes;
         List<Ingredient> stock;
 
+
+
+
+
+
+        public int CheckChoix(int max)
+        {
+            int choix = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                if (choix > max || choix < 0)
+                {
+                    throw new Exception("Le chiffre rentrer est incorrect");
+                }
+                return choix;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                choix = CheckChoix(max);
+                return choix;
+            }
+
+        }
     }
 }

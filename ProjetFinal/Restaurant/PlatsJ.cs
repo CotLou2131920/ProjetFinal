@@ -57,7 +57,7 @@ namespace Restaurant
         }
         public string AfficherIngredients()
         {
-            string msg = "";
+            string msg = "Ingredients:\n";
             foreach (Ingredient i in ingredient)
                 msg += i.nom+ "\n";
             return msg;
