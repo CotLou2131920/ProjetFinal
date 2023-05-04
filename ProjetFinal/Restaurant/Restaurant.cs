@@ -24,16 +24,16 @@ namespace Restaurant
         {
             argent = 2000;
             cote = 0;
-            maxEmployer = 3;
+            maxEmployer = 100;
             maxClient = 5;
 
-            menu = new Menu(PlatsDepart());
-            employes = new List<Employer>();
-            PlatsApris = new List<Plats>();
             IngredientsPossibles = new List<Ingredient>();
             IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>("json_ingredient.json");
             PlatsPossibles = new List<Plats>();
             PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>("json_plats.json");
+            menu = new Menu(PlatsDepart());
+            employes = new List<Employer>();
+            PlatsApris = new List<Plats>();
 
             FabriqueNom.InitialiseNom();
 
