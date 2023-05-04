@@ -8,9 +8,7 @@ namespace Restaurant
 {
     partial class Restaurant
     {
-        List<Ingredient> IngredientsPossibles;
-        List<Plats> PlatsPossibles;
-        List<Plats> PlatsApris;
+        
         public void Main2()
         {
             IngredientsPossibles = new List<Ingredient>();

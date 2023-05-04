@@ -10,7 +10,7 @@ namespace Restaurant
     {
         int maxPlats { get; set; }
         public List<Plats> platsDispo { get; set; }
-        List<Plats> platsMenu;
+         public List<Plats> platsMenu { get ; set; }
 
         
             
