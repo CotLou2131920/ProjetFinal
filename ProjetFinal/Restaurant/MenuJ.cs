@@ -67,7 +67,7 @@ namespace Restaurant
                 else
                 {
                     platsMenu.Add(plats[choix-1]);
-                    Console.WriteLine($"{plats[i-1].nom} a ete ajouter au menu");
+                    Console.WriteLine($"{plats[choix-1].nom} a ete ajouter au menu");
                     Console.ReadLine();
                     Console.Clear();
                     MenuMenu();
