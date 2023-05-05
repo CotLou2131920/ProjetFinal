@@ -69,19 +69,43 @@ namespace Restaurant
             Console.WriteLine("\nQuel Action Voulez-vous Faire ?\n" +
                         "  (1) Assoire un client dans le resto  \n" +
                         "  (2) Aller Prendre une commande a un client  \n" +
-                        "  (3) Aller Porter une commande a un client \n" +
-                        "  (4) Aller Rammaser une table \n" +
-                        "  (5) Retour \n");
-            int choixAction = CheckChoix(5);
-            if (choixAction == 5)
+                        "  (3) Aller Rammaser une table \n" +
+                        "  (4) Retour \n");
+            int choixAction = CheckChoix(4);
+            if (choixAction == 4)
             {
                 Console.Clear();
                 choixEmploye = ChoisiEmployer();
                 choixAction = ChoisirAction(choixEmploye);
             }
+            else if (choixAction == 1 && VerfieClientPret() )
+            {
+                choixAction = ChoisirAction(choixEmploye);
+            }
+                        
             return choixAction;
         }
 
+        public bool VerfieClientPret()
+        {
+            bool valide = true;
+            int clientAssi = 0;
+            foreach (Client client in clientJourne)
+            {
+                if (client.etat == Etat.Assit)
+                    clientAssi++;
+                else if (client.etat == Etat.Pret)
+                    valide = false;
+            }
+            if (valide)
+                Console.WriteLine("Désoler Vous n'avez aucun client prêt à être assit !");
+            if (clientAssi == maxClient)
+            {
+                Console.WriteLine("Désoler la capacitée maximale du restaurant à été atteinte !");
+                valide = true;
+            }
+            return valide;
+        }
 
         public void LanceJournee()
         {
