@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using Console = Colorful.Console;
 
 namespace Restaurant
 {
     partial class Restaurant
     {
-        //magasin
-
         public List<Employer> employersMag { get; set; }
-
-
 
         public void MenuMagasin()
         {
@@ -33,14 +31,34 @@ namespace Restaurant
         }
         public void MenuAcheterEmployer()
         {
-
+            Console.Clear();
+            Console.WriteLine("Bienvenu aux Marché");
+            Console.WriteLine("(1) Engager un employer");
+            Console.WriteLine("(2) Acheter un recette");
+            Console.WriteLine("(3) Achter des ingredients");
+            Console.WriteLine("(4) Retour");
 
 
         }
-        public void InitializeEmployerDuJour()
+        public void InitializeEmployerMag()
         {
+            employersMag.Clear();
+            for(int i = 0; i < 5; i++)
+            {
+                employersMag.Add(new Employer((Rarete)rand.Next(5)));
+            }
+        }
+        public void VirerEmployer()
+        {
+            Console.WriteLine("Choissisez quel employer voul voulez virez");
+            for (int i = 1; i > employes.Count(); i++)
+            {
+                Console.WriteLine($"({i}) Nom: {employes[i].nomComplet}  Effet: {employes[i].effet.h}");
 
 
+            }
+       
+            //enleve moitie de paye
         }
         public void MenuAcheterPlat()
         {
@@ -152,9 +170,6 @@ namespace Restaurant
                     MenuMagasin();
                 }
             }
-
-
-
         }
         public bool CheckArgent(double prix)
         {
@@ -167,11 +182,6 @@ namespace Restaurant
             }
             return true;
         }
-
-
-
-
-
 
     }
 }
