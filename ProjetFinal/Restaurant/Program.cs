@@ -7,10 +7,7 @@ namespace Restaurant
         static void Main(string[] args)
         {
             Restaurant resto = new Restaurant();
-            foreach (Employer employe in resto.employes)
-            {
-                Console.WriteLine(employe);
-            }
+            resto.LanceJournee();
            
 
         }

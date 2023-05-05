@@ -22,12 +22,12 @@ namespace Restaurant
     partial class Employer : Personne
     {
         int salaire;
-        int action;
-        int actionMax;
+        public int action { get; set; }
+        public int actionMax { get; set; }
         Effet effet;
         Random rand = new Random();
 
-        public Employer(string prenom, string nom, Rarete rarete) : base(prenom, nom, rarete)
+        public Employer(Rarete rarete) : base( rarete)
         {
             salaire = TrouveSalaire(rarete);
             effet = (Effet)TrouveEffet(rarete);
@@ -35,6 +35,7 @@ namespace Restaurant
                 actionMax = 2;
             else
                 actionMax = 1;
+            action = actionMax;
         }
 
         public int TrouveEffet(Rarete rarete)
@@ -71,9 +72,9 @@ namespace Restaurant
 
         public override string ToString()
         {
-            string info = $"Nom : {nomComplet}\n" +
-                $"Salaire : {salaire}\n" +
-                $"Effet : {effet}\n";
+            string info = $"Employer : {nomComplet} || " +
+                $"Salaire : {salaire} || " +
+                $"Effet : {effet} ";
             return info;
         }
     }
