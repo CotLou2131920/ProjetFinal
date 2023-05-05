@@ -8,7 +8,7 @@ namespace Restaurant
 {
     partial class Restaurant
     {
-        
+
         public void Main2()
         {
 
@@ -25,15 +25,30 @@ namespace Restaurant
                 Console.WriteLine("(1) Menu du menu");
                 Console.WriteLine("(2) Magasin");
                 Console.WriteLine("(3) Afficher Inventaire");
+                Console.WriteLine("(4) Afficher Inventaire");
+                Console.WriteLine("(5) Retour");
                 Console.WriteLine("Rentre choix");
-                choix = CheckChoix(3);
+                choix = CheckChoix(5);
                 switch (choix)
                 {
                     case 1: menu.MenuMenu(); break;
                     case 2: MenuMagasin(); break;
-                    case 3: AfficherInventaire(); break;
+                    case 3: VirerEmployer(); break;
+                    case 4: AfficherInventaire(); break;
+                    case 5:; break;
                 }
             }
+        }
+        public void VraimentQuitter()
+        {
+            string choix;
+            Console.WriteLine("Commencer Journee?   O/N");
+            do
+            {
+                choix = Console.ReadLine().ToUpper();
+            } while (choix != "O" && choix != "N");
+            if (choix == "N")
+                MenuResto();
         }
         public void IngredientsDepart()
         {

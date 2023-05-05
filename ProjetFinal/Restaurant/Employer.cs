@@ -24,7 +24,7 @@ namespace Restaurant
         int salaire;
         public int action { get; set; }
         public int actionMax { get; set; }
-        Effet effet;
+        public Effet effet { get; set; }
         Random rand = new Random();
 
         public Employer(Rarete rarete) : base( rarete)

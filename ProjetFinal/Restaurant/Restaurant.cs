@@ -41,10 +41,6 @@ namespace Restaurant
                 employes.Add(new Employer((Rarete)rand.Next(0, 5)));
             IngredientsDepart();
 
-
-
-
-
         }
 
         public int ChoisiEmployer()
@@ -85,6 +81,9 @@ namespace Restaurant
 
         public void LanceJournee()
         {
+            InitializeEmployerMag();
+            MenuResto();
+
             int nbClientJournee = rand.Next(maxClient, maxClient * 2);
             clientJourne = new Client[nbClientJournee];
             for (int i = 0; i < nbClientJournee; i++)
