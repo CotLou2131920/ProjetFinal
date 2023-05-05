@@ -20,9 +20,9 @@ namespace Restaurant
         public string nomComplet { get; set; }
         Rarete rare;
         
-        public Personne(string prenom, string nom, Rarete rarete)
+        public Personne(Rarete rarete)
         {
-            nomComplet = prenom + " " + nom;
+            nomComplet = FabriqueNom.FabriquerPrenom() + " " + FabriqueNom.FabriquerNom();
             rare = rarete;
            
         }

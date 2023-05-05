@@ -6,19 +6,29 @@ using System.Threading.Tasks;
 
 namespace Restaurant
 {
+    enum Etat
+    {
+        Pret,
+        Assit,
+        Attend,
+        Mange,
+        Fini
+    }
     partial class Client : Personne
     {
         Plats Commande;
+        public Etat etat { get; set; }
         int satisfaction;
         string platPref;
         string platDeteste;
         public Random rand = new Random();
 
-        public Client(string prenom, string nom, Rarete rarete, Menu menu) : base(prenom, nom, rarete)
+        public Client(Rarete rarete, Menu menu) : base(rarete)
         {
             platPref = AssignePlatPref(menu);
             platDeteste = AssignePlatDeteste(menu);
             satisfaction = AjusteRarete(rarete);
+            etat = Etat.Pret;
         }
 
         public int AjusteRarete(Rarete rarete)
@@ -37,14 +47,22 @@ namespace Restaurant
 
         public string AssignePlatPref(Menu menu)
         {
-            int choix = rand.Next(0, menu.platsMenu.Count+1);
+            int choix = rand.Next(0, menu.platsMenu.Count);
             return menu.platsMenu[choix].nom;
         }
 
         public string AssignePlatDeteste(Menu menu)
         {
-            int choix = rand.Next(0, menu.platsMenu.Count+1);
+            int choix = rand.Next(0, menu.platsMenu.Count);
             return menu.platsMenu[choix].nom;
+        }
+
+        public override string ToString()
+        {
+            string info = $"Client : {nomComplet} || " +
+                $"État : {etat} ";
+               
+            return info;
         }
     }
 }

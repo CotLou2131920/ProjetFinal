@@ -15,6 +15,7 @@ namespace Restaurant
         public Menu menu { get; set; }
         public List<Employer> employes { get; set; }
         public List<Ingredient> stock { get; set; }
+        public Client[] clientJourne { get; set; }
         List<Ingredient> IngredientsPossibles;
         public List<Plats> PlatsPossibles { get; set; }
         public Random rand = new Random();
@@ -23,7 +24,7 @@ namespace Restaurant
         {
             argent = 2000;
             cote = 0;
-            maxEmployer = 100;
+            maxEmployer = 3;
             maxClient = 5;
 
             IngredientsPossibles = new List<Ingredient>();
@@ -32,26 +33,125 @@ namespace Restaurant
             PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>("json_plats.json");
             menu = new Menu(PlatsDepart());
             employes = new List<Employer>();
+            employersMag = new List<Employer>();
 
             FabriqueNom.InitialiseNom();
 
             for (int i = 0; i < maxEmployer; i++)
+                employes.Add(new Employer((Rarete)rand.Next(0, 5)));
+            IngredientsDepart();
+
+
+
+
+
+        }
+
+        public int ChoisiEmployer()
+        {
+            Console.WriteLine("Quelle employer voulez vous emvoyer ?\n");
+            for (int i = 0; i < employes.Count; i++)
+                Console.WriteLine($"({i + 1}) " + employes[i]);
+            int choixEmploye = CheckChoix(employes.Count);
+            if (employes[choixEmploye - 1].action <= 0)
             {
-                Employer employer = new Employer(FabriqueNom.FabriquerPrenom(), FabriqueNom.FabriquerNom(), (Rarete)rand.Next(0, 5));
-                employes.Add(employer);
+                Console.WriteLine("Désolé l'employer est Déjà occupé");
+                Console.Clear();
+                ChoisiEmployer();
+            }
+            return choixEmploye;
+        }
+
+        public int ChoisirAction(int choixEmploye)
+        {
+            foreach (Client client in clientJourne)
+                Console.WriteLine("\n" + client);
+            Console.WriteLine("\nQuel Action Voulez-vous Faire ?\n" +
+                        "  (1) Assoire un client dans le resto  \n" +
+                        "  (2) Aller Prendre une commande a un client  \n" +
+                        "  (3) Aller Porter une commande a un client \n" +
+                        "  (4) Aller Rammaser une table \n" +
+                        "  (5) Retour \n");
+            int choixAction = CheckChoix(5);
+            if (choixAction == 5)
+            {
+                Console.Clear();
+                choixEmploye = ChoisiEmployer();
+                choixAction = ChoisirAction(choixEmploye);
+            }
+            return choixAction;
+        }
+
+
+        public void LanceJournee()
+        {
+            int nbClientJournee = rand.Next(maxClient, maxClient * 2);
+            clientJourne = new Client[nbClientJournee];
+            for (int i = 0; i < nbClientJournee; i++)
+                clientJourne[i] = new Client((Rarete)rand.Next(0, 5), menu);
+
+
+
+            bool JourneFini = true;
+            while (JourneFini)
+            {
+                bool valide = true;
+                do
+                {
+                    int choixEmploye = ChoisiEmployer();
+                    int choixAction = ChoisirAction(choixEmploye);
+                        do
+                        {
+                            int clienChoisi = rand.Next(nbClientJournee);
+                            if (clientJourne[clienChoisi].etat == Etat.Pret)
+                            {
+                                employes[choixEmploye - 1].action--;
+                                clientJourne[clienChoisi].etat++;
+                                valide = false;
+                            }
+                        } while (valide);
+                    
+                } while (valide);
+                Console.Clear();
             }
 
-            employersMag = new List<Employer>();
 
-
-            IngredientsDepart();
         }
+
+        public void AfficheMenuPrincipale()
+        {
+            Console.Write("+---------------------------------------------------------------------------------------------------------------------+\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "|                                                                                                                     |\n" +
+                          "+---------------------------------------------------------------------------------------------------------------------+\n");
+        }
+
+
+        
         public Plats AssignePlatPref()
         {
-            return menu.platsDispo[rand.Next(0, menu.platsDispo.Count+1)];
+            return menu.platsDispo[rand.Next(0, menu.platsDispo.Count + 1)];
 
         }
-        //securite
+
+
+
+
+
+
+
+
+
         public int CheckChoix(int max)
         {
             int choix;
