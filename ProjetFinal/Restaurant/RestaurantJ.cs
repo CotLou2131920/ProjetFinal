@@ -11,29 +11,27 @@ namespace Restaurant
         
         public void Main2()
         {
-            
-            
 
-            menu = new Menu(PlatsDepart());
-            Menu();
-
+            MenuResto();
 
             AfficherInventaire();
 
         }
-        public void Menu()
+        public void MenuResto()
         {
             int choix = 1;
             while (choix != 0)
             {
                 Console.WriteLine("(1) Menu du menu");
                 Console.WriteLine("(2) Magasin");
+                Console.WriteLine("(3) Afficher Inventaire");
                 Console.WriteLine("Rentre choix");
-                choix = CheckChoix(2);
+                choix = CheckChoix(3);
                 switch (choix)
                 {
                     case 1: menu.MenuMenu(); break;
-                    // case magasin
+                    case 2: MenuMagasin(); break;
+                    case 3: AfficherInventaire(); break;
                 }
             }
         }
@@ -58,7 +56,6 @@ namespace Restaurant
                 stock.Add(RechercheIngredient("Vinegraite"));
             for (int i = 0; i < 20; i++)
                 stock.Add(RechercheIngredient("Farine"));
-
         }
         public Ingredient RechercheIngredient(string nom)
         {

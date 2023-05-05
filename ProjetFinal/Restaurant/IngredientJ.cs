@@ -16,7 +16,7 @@ namespace Restaurant
             this.nom = nom;
             calories = calorie;
             this.qualite = qualite;
-            this.prix = prix;
+            this.prix = Math.Round(prix, 3);
         }
         public Ingredient()
         {

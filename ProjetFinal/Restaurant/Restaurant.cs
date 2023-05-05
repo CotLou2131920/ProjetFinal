@@ -16,8 +16,7 @@ namespace Restaurant
         public List<Employer> employes { get; set; }
         public List<Ingredient> stock { get; set; }
         List<Ingredient> IngredientsPossibles;
-        List<Plats> PlatsPossibles;
-        List<Plats> PlatsApris;
+        public List<Plats> PlatsPossibles { get; set; }
         public Random rand = new Random();
 
         public Restaurant()
@@ -33,7 +32,6 @@ namespace Restaurant
             PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>("json_plats.json");
             menu = new Menu(PlatsDepart());
             employes = new List<Employer>();
-            PlatsApris = new List<Plats>();
 
             FabriqueNom.InitialiseNom();
 
@@ -42,30 +40,25 @@ namespace Restaurant
                 Employer employer = new Employer(FabriqueNom.FabriquerPrenom(), FabriqueNom.FabriquerNom(), (Rarete)rand.Next(0, 5));
                 employes.Add(employer);
             }
+
+            employersMag = new List<Employer>();
+
+
             IngredientsDepart();
         }
-
-
         public Plats AssignePlatPref()
         {
             return menu.platsDispo[rand.Next(0, menu.platsDispo.Count+1)];
 
         }
-
-
-        
-
-
-
-
-
-
+        //securite
         public int CheckChoix(int max)
         {
-            int choix = Convert.ToInt32(Console.ReadLine());
+            int choix;
             try
             {
-                if (choix > max || choix < 0)
+                choix = Convert.ToInt32(Console.ReadLine());
+                if (choix > max || choix <= 0)
                 {
                     throw new Exception("Le chiffre rentrer est incorrect");
                 }

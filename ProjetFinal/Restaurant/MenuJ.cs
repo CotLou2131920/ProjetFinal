@@ -28,7 +28,6 @@ namespace Restaurant
                 case 4: MenuModifierPrix(); break;
                 case 5: /* retour menu */; break;
             }
-
         }
         public void AfficherMenu()
         {
