@@ -48,14 +48,23 @@ namespace Restaurant
         public int ChoisiEmployer()
         {
             Console.WriteLine("Quelle employer voulez vous emvoyer ?\n");
-            for (int i = 0; i < employes.Count; i++)
+            int i = 0;
+            for (i = 0; i < employes.Count; i++)
                 Console.WriteLine($"({i + 1}) " + employes[i]);
-            int choixEmploye = CheckChoix(employes.Count);
+            Console.WriteLine($"Pour passer un tour ({i+1})");
+            int choixEmploye = CheckChoix(employes.Count+1);
+            if (choixEmploye == i+1)
+            {
+                RemetActionEmloye();
+                Console.Clear();
+                choixEmploye = ChoisiEmployer();
+            }
             if (employes[choixEmploye - 1].action <= 0)
             {
-                Console.WriteLine("Désolé l'employer est Déjà occupé");
+                Console.WriteLine("Désolé l'employer est Déjà occupé \nAppuyer sur nimporte quel touche pour continuer");
+                Console.ReadKey();
                 Console.Clear();
-                ChoisiEmployer();
+                choixEmploye = ChoisiEmployer();
             }
             return choixEmploye;
         }
@@ -63,7 +72,8 @@ namespace Restaurant
         public int ChoisirAction(int choixEmploye)
         {
             foreach (Client client in clientJourne)
-                Console.WriteLine("\n" + client);
+                if (client.etat == Etat.Assit || client.etat == Etat.Attend || client.etat == Etat.Mange || client.etat == Etat.Fini)
+                    Console.WriteLine("\n" + client);
             Console.WriteLine("\nQuel Action Voulez-vous Faire ?\n" +
                         "  (1) Assoire un client dans le resto  \n" +
                         "  (2) Aller Prendre une commande a un client  \n" +
@@ -88,6 +98,7 @@ namespace Restaurant
             {
                 choixAction = ChoisirAction(choixEmploye);
             }
+            
 
             return choixAction;
         }
@@ -101,8 +112,13 @@ namespace Restaurant
                     valide = false;
             }
             if (valide)
-                Console.WriteLine("Désoler Vous n'avez aucune table à rammaser!");
-            return false;
+            {
+                Console.WriteLine("Désoler Vous n'avez aucune table à rammaser !\nAppuyer sur nimporte quel touche pour continuer");
+                Console.ReadKey();
+                Console.Clear();
+
+            }
+            return valide;
         }
 
         public bool VerifieClientAssit()
@@ -114,7 +130,12 @@ namespace Restaurant
                     valide = false;
             }
             if (valide)
-                Console.WriteLine("Désoler Vous n'avez aucun assit prêt à être assit !");
+            {
+                Console.WriteLine("Désoler Vous n'avez aucun client prêt à commander !\nAppuyer sur nimporte quel touche pour continuer");
+                Console.ReadKey();
+                Console.Clear();
+
+            }
             return valide;
         }
 
@@ -124,16 +145,22 @@ namespace Restaurant
             int clientAssi = 0;
             foreach (Client client in clientJourne)
             {
-                if (client.etat == Etat.Assit)
+                if (client.etat == Etat.Assit || client.etat == Etat.Attend || client.etat == Etat.Mange || client.etat == Etat.Fini)
                     clientAssi++;
                 else if (client.etat == Etat.Pret)
                     valide = false;
             }
             if (valide)
-                Console.WriteLine("Désoler Vous n'avez aucun client prêt à être assit !");
+            {
+                Console.WriteLine("Désoler Vous n'avez aucun client prêt à être assit !\nAppuyer sur nimporte quel touche pour continuer");
+                Console.ReadKey();
+                Console.Clear();
+            }
             if (clientAssi == maxClient)
             {
-                Console.WriteLine("Désoler la capacitée maximale du restaurant à été atteinte !");
+                Console.WriteLine("Désoler la capacitée maximale du restaurant à été atteinte !\nAppuyer sur nimporte quel touche pour continuer");
+                Console.ReadKey();
+                Console.Clear();
                 valide = true;
             }
             return valide;
@@ -161,11 +188,18 @@ namespace Restaurant
                     int choixAction = ChoisirAction(choixEmploye);
                     do
                     {
-                        int clienChoisi = rand.Next(nbClientJournee);
-                        if (clientJourne[clienChoisi].etat == Etat.Pret)
+                        int clientChoisi = rand.Next(nbClientJournee);
+                        if (clientJourne[clientChoisi].etat == Etat.Pret && choixAction == 1)
                         {
                             employes[choixEmploye - 1].action--;
-                            clientJourne[clienChoisi].etat++;
+                            clientJourne[clientChoisi].etat++;
+                            valide = false;
+                        }
+                        else if (clientJourne[clientChoisi].etat == Etat.Assit && choixAction == 2)
+                        {
+                            AssignePlatClient(clientChoisi);
+                            employes[choixEmploye - 1].action--;
+                            clientJourne[clientChoisi].etat++;
                             valide = false;
                         }
                     } while (valide);
@@ -175,8 +209,18 @@ namespace Restaurant
                 Cuisson();
                 Console.Clear();
             }
+        }
 
-
+        public void AssignePlatClient(int clientChoisi)
+        {
+            clientJourne[clientChoisi].Commande = menu.platsMenu[rand.Next(menu.platsMenu.Count)];
+            if (!CheckAssezIngredients(clientJourne[clientChoisi].Commande))
+                AssignePlatClient(clientChoisi);
+        }
+        public void RemetActionEmloye()
+        {
+            for(int i = 0; i < employes.Count; i++)
+                employes[i].action = employes[i].actionMax;
         }
 
         public void AfficheMenuPrincipale()
@@ -230,7 +274,7 @@ namespace Restaurant
                 Console.WriteLine(ex.Message);
                 choix = CheckChoix(max);
                 return choix;
-            }
+            } 
 
         }
 

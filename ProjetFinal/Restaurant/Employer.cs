@@ -74,7 +74,8 @@ namespace Restaurant
         {
             string info = $"Employer : {nomComplet} || " +
                 $"Salaire : {salaire} || " +
-                $"Effet : {effet} ";
+                $"Effet : {effet} || " +
+                $"Action restante : {action}";
             return info;
         }
     }

@@ -12,7 +12,8 @@ namespace Restaurant
         Assit,
         Attend,
         Mange,
-        Fini
+        Fini,
+        Partie
     }
     partial class Client : Personne
     {
