@@ -17,6 +17,7 @@ namespace Restaurant
         public List<Ingredient> stock { get; set; }
         public Client[] clientJourne { get; set; }
         List<Ingredient> IngredientsPossibles;
+        List<Employer> employersMag { get ; set; }
         public List<Plats> PlatsPossibles { get; set; }
         public Random rand = new Random();
         public int CotePourUpgrade { get; set; }
@@ -76,12 +77,46 @@ namespace Restaurant
                 choixEmploye = ChoisiEmployer();
                 choixAction = ChoisirAction(choixEmploye);
             }
-            else if (choixAction == 1 && VerfieClientPret() )
+            else if (choixAction == 1 && VerfieClientPret())
             {
                 choixAction = ChoisirAction(choixEmploye);
             }
-                        
+            else if (choixAction == 2 && VerifieClientAssit())
+            {
+                choixAction = ChoisirAction(choixEmploye);
+            }
+            else if (choixAction == 3 && VerifieClientFini())
+            {
+                choixAction = ChoisirAction(choixEmploye);
+            }
+
             return choixAction;
+        }
+
+        public bool VerifieClientFini()
+        {
+            bool valide = true;
+            foreach (Client client in clientJourne)
+            {
+                if (client.etat == Etat.Fini)
+                    valide = false;
+            }
+            if (valide)
+                Console.WriteLine("Désoler Vous n'avez aucune table à rammaser!");
+            return false;
+        }
+
+        public bool VerifieClientAssit()
+        {
+            bool valide = true;
+            foreach (Client client in clientJourne)
+            {
+                if (client.etat == Etat.Assit)
+                    valide = false;
+            }
+            if (valide)
+                Console.WriteLine("Désoler Vous n'avez aucun assit prêt à être assit !");
+            return valide;
         }
 
         public bool VerfieClientPret()
@@ -125,17 +160,17 @@ namespace Restaurant
                 {
                     int choixEmploye = ChoisiEmployer();
                     int choixAction = ChoisirAction(choixEmploye);
-                        do
+                    do
+                    {
+                        int clienChoisi = rand.Next(nbClientJournee);
+                        if (clientJourne[clienChoisi].etat == Etat.Pret)
                         {
-                            int clienChoisi = rand.Next(nbClientJournee);
-                            if (clientJourne[clienChoisi].etat == Etat.Pret)
-                            {
-                                employes[choixEmploye - 1].action--;
-                                clientJourne[clienChoisi].etat++;
-                                valide = false;
-                            }
-                        } while (valide);
-                    
+                            employes[choixEmploye - 1].action--;
+                            clientJourne[clienChoisi].etat++;
+                            valide = false;
+                        }
+                    } while (valide);
+
                 } while (valide);
                 ///////////////////////////////////////////////////////////////////
                 Cuisson();
@@ -164,7 +199,7 @@ namespace Restaurant
         }
 
 
-        
+
         public Plats AssignePlatPref()
         {
             return menu.platsDispo[rand.Next(0, menu.platsDispo.Count + 1)];
