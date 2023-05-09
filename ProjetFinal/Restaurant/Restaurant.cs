@@ -17,7 +17,6 @@ namespace Restaurant
         public List<Ingredient> stock { get; set; }
         public Client[] clientJourne { get; set; }
         List<Ingredient> IngredientsPossibles;
-        List<Employer> employersMag { get ; set; }
         public List<Plats> PlatsPossibles { get; set; }
         public Random rand = new Random();
         public int CotePourUpgrade { get; set; }
