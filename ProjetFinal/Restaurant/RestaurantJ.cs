@@ -217,17 +217,6 @@ namespace Restaurant
             }
             return true;
         }
-        public void Cuisson()
-        {
-            for (int i = 0; i > clientJourne.Count(); i++)
-            {
-                if (clientJourne[i].etat == Etat.Attend)
-                {
-                    clientJourne[i].Commande.tempsCuisson--;
-                    if (clientJourne[i].Commande.tempsCuisson == 0)
-                        clientJourne[i].etat++;
-                }
-            }
-        }
+        
     }
 }

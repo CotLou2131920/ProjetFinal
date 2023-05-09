@@ -55,6 +55,8 @@ namespace Restaurant
             int choixEmploye = CheckChoix(employes.Count+1);
             if (choixEmploye == i+1)
             {
+                CheckManger();
+                Cuisson();
                 RemetActionEmloye();
                 Console.Clear();
                 choixEmploye = ChoisiEmployer();
@@ -202,11 +204,16 @@ namespace Restaurant
                             clientJourne[clientChoisi].etat++;
                             valide = false;
                         }
+                        else if (clientJourne[clientChoisi].etat == Etat.Fini && choixAction == 3)
+                        {
+                            employes[choixEmploye - 1].action--;
+                            clientJourne[clientChoisi].etat++;
+                            valide = false;
+                        }
                     } while (valide);
 
                 } while (valide);
-                CheckManger();
-                Cuisson();
+                
                 Console.Clear();
             }
         }
@@ -256,23 +263,22 @@ namespace Restaurant
 
         public void Cuisson()
         {
-            for (int i = 0; i > clientJourne.Count(); i++)
+            for (int i = 0; i < clientJourne.Count(); i++)
             {
                 if (clientJourne[i].etat == Etat.Attend)
                 {
                     clientJourne[i].Commande.tempsCuisson--;
-                    if (clientJourne[i].Commande.tempsCuisson == 0)
+                    if (clientJourne[i].Commande.tempsCuisson <= 0)
                         clientJourne[i].etat++;
                 }
             }
         }
         public void CheckManger()
         {
-            for (int i = 0; i > clientJourne.Count(); i++)
+            for (int i = 0; i < clientJourne.Count(); i++)
             {
                 if (clientJourne[i].etat == Etat.Mange)
                 {
-                    clientJourne[i].Commande.tempsCuisson--;
                     clientJourne[i].etat++;
                     argent += clientJourne[i].Commande.prixMenu;
                 }

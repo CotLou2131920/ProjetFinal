@@ -55,6 +55,8 @@ namespace Restaurant
         public string AssignePlatDeteste(Menu menu)
         {
             int choix = rand.Next(0, menu.platsMenu.Count);
+            if (platPref == menu.platsMenu[choix].nom)
+                return AssignePlatDeteste(menu);
             return menu.platsMenu[choix].nom;
         }
 
@@ -62,7 +64,7 @@ namespace Restaurant
         {
             string info = $"Client : {nomComplet} || " +
                 $"État : {etat} ";
-               
+
             return info;
         }
     }
