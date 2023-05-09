@@ -19,6 +19,7 @@ namespace Restaurant
         List<Ingredient> IngredientsPossibles;
         public List<Plats> PlatsPossibles { get; set; }
         public Random rand = new Random();
+        public int CotePourUpgrade { get; set; }
 
         public Restaurant()
         {
@@ -34,6 +35,7 @@ namespace Restaurant
             menu = new Menu(PlatsDepart());
             employes = new List<Employer>();
             employersMag = new List<Employer>();
+            CotePourUpgrade = 25;
 
             FabriqueNom.InitialiseNom();
 
@@ -135,6 +137,8 @@ namespace Restaurant
                         } while (valide);
                     
                 } while (valide);
+                ///////////////////////////////////////////////////////////////////
+                Cuisson();
                 Console.Clear();
             }
 

@@ -18,7 +18,7 @@ namespace Restaurant
     partial class Personne
     {
         public string nomComplet { get; set; }
-        Rarete rare;
+        public Rarete rare { get; set; }
         
         public Personne(Rarete rarete)
         {

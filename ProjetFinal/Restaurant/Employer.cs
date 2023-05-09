@@ -21,7 +21,7 @@ namespace Restaurant
     }
     partial class Employer : Personne
     {
-        int salaire;
+        public int salaire { get; set; }
         public int action { get; set; }
         public int actionMax { get; set; }
         public Effet effet { get; set; }

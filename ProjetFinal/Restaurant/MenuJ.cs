@@ -152,6 +152,8 @@ namespace Restaurant
         }
         public void ModifierPrix(int choix)
         {
+            Console.WriteLine("Astuce: Un client ne seras pas content de payer trop cher pour un plat,\n" +
+                "        mais il serait tres content de payer moins cher\n\n\n\n");
             Console.WriteLine("Entrez le nouveaux prix");
             int prix = CheckChoix(10000);
             platsMenu[choix].prixMenu = prix;

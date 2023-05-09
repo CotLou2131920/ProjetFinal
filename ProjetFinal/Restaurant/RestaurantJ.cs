@@ -22,20 +22,46 @@ namespace Restaurant
             int choix = 1;
             while (choix != 0)
             {
+                int i = 5;
                 Console.WriteLine("(1) Menu du menu");
                 Console.WriteLine("(2) Magasin");
                 Console.WriteLine("(3) Afficher Inventaire");
                 Console.WriteLine("(4) Afficher Inventaire");
-                Console.WriteLine("(5) Retour");
-                Console.WriteLine("Rentre choix");
-                choix = CheckChoix(5);
-                switch (choix)
+                if (cote >= CotePourUpgrade)
                 {
-                    case 1: menu.MenuMenu(); break;
-                    case 2: MenuMagasin(); break;
-                    case 3: VirerEmployer(); break;
-                    case 4: AfficherInventaire(); break;
-                    case 5:; break;
+                    Console.WriteLine("(5) Retour");
+                    Console.WriteLine("(6) Retour");
+                    i = 6;
+                }
+                else
+                {
+                    Console.WriteLine("(5) Retour");
+                }
+
+                Console.WriteLine("Rentre choix");
+                choix = CheckChoix(i);
+                if (i == 5)
+                {
+                    switch (choix)
+                    {
+                        case 1: menu.MenuMenu(); break;
+                        case 2: MenuMagasin(); break;
+                        case 3: VirerEmployer(); break;
+                        case 4: AfficherInventaire(); break;
+                        case 5:; break;
+                    }
+                }
+                else
+                {
+                    switch (choix)
+                    {
+                        case 1: menu.MenuMenu(); break;
+                        case 2: MenuMagasin(); break;
+                        case 3: VirerEmployer(); break;
+                        case 4: AfficherInventaire(); break;
+                        case 5: UpgradeResto(); break;
+                        case 6:; break;
+                    }
                 }
             }
         }
@@ -49,6 +75,15 @@ namespace Restaurant
             } while (choix != "O" && choix != "N");
             if (choix == "N")
                 MenuResto();
+        }
+        public void UpgradeResto()
+        {
+            if (cote >= CotePourUpgrade)
+            {
+                Console.WriteLine($"La renovation coutera {CotePourUpgrade * 10}");
+            }
+
+
         }
         public void IngredientsDepart()
         {
@@ -137,9 +172,34 @@ namespace Restaurant
                     Console.WriteLine(grp.Key.nom + ": " + grp.Count());
             }
         }
+        public bool CheckAssezIngredients(Plats p)
+        {
+            foreach (Ingredient i in p.ingredient)
+            {
+                if (!stock.Contains(RechercheIngredient(i.nom)))
+                {
+                    Console.WriteLine("Vous avez pas assez d'ingredient pour " + p.nom);
+                    return false;
+                }
+            }
+            foreach (Ingredient i in p.ingredient)
+            {
+                stock.Remove(i);
+            }
+            return true;
+        }
+        //verifier avec l'autre
         public void Cuisson()
         {
-
+            for (int i = 0; i > clientJourne.Count(); i++)
+            {
+                if (clientJourne[i].etat == Etat.Attend)
+                {
+                    clientJourne[i].Commande.tempsCuisson--;
+                    if (clientJourne[i].Commande.tempsCuisson == 0)
+                        clientJourne[i].etat++;
+                }
+            }
         }
     }
 }

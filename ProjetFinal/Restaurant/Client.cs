@@ -16,7 +16,7 @@ namespace Restaurant
     }
     partial class Client : Personne
     {
-        Plats Commande;
+        public Plats Commande { get; set; }
         public Etat etat { get; set; }
         int satisfaction;
         string platPref;

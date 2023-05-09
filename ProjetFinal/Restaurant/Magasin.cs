@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using Console = Colorful.Console;
+using Humanizer;
 
 namespace Restaurant
 {
@@ -29,37 +30,6 @@ namespace Restaurant
                 case 4: /*retour*/; break;
             }
         }
-        public void MenuAcheterEmployer()
-        {
-            Console.Clear();
-            Console.WriteLine("Bienvenu aux Marché");
-            Console.WriteLine("(1) Engager un employer");
-            Console.WriteLine("(2) Acheter un recette");
-            Console.WriteLine("(3) Achter des ingredients");
-            Console.WriteLine("(4) Retour");
-
-
-        }
-        public void InitializeEmployerMag()
-        {
-            employersMag.Clear();
-            for(int i = 0; i < 5; i++)
-            {
-                employersMag.Add(new Employer((Rarete)rand.Next(5)));
-            }
-        }
-        public void VirerEmployer()
-        {
-            Console.WriteLine("Choissisez quel employer voul voulez virez");
-            for (int i = 1; i > employes.Count(); i++)
-            {
-                Console.WriteLine($"({i}) Nom: {employes[i].nomComplet}  Effet: {employes[i].effet.h}");
-
-
-            }
-       
-            //enleve moitie de paye
-        }
         public void MenuAcheterPlat()
         {
 
@@ -80,17 +50,11 @@ namespace Restaurant
             {
                 if (CheckArgent(plats[choix - 1].PrixAchat))
                 {
-                    string choix2;
-                    do
-                    {
-                        Console.WriteLine($"Achter  {plats[choix - 1].nom}      O/N");
-                        choix2 = Console.ReadLine().ToUpper();
-                    }
-                    while (choix2 != "O" && choix2 != "N");
 
-                    if(choix2 == "O")
+                    if(VerifierChoix())
                     {
                         menu.platsDispo.Add(plats[choix - 1]);
+                        argent -= plats[i].PrixAchat;
                         Console.WriteLine($"{plats[choix - 1].nom} a ete ajouter au menu");
                         Console.ReadLine();
                         Console.Clear();
@@ -143,17 +107,10 @@ namespace Restaurant
             {
                 if (CheckArgent(IngredientsPossibles[choix - 1].prix))
                 {
-                    string choix2;
-                    do
-                    {
-                        Console.WriteLine($"Achter  {IngredientsPossibles[choix - 1].nom}      O/N");
-                        choix2 = Console.ReadLine().ToUpper();
-                    }
-                    while (choix2 != "O" && choix2 != "N");
-
-                    if (choix2 == "O")
+                    if (VerifierChoix())
                     {
                         stock.Add(IngredientsPossibles[choix - 1]);
+                        argent -= IngredientsPossibles[choix - 1].prix;
                         Console.WriteLine($"{IngredientsPossibles[choix - 1].nom} a ete ajouter a l'inventaire");
                         Console.ReadLine();
                         Console.Clear();
@@ -181,6 +138,82 @@ namespace Restaurant
                 return false;
             }
             return true;
+        }
+        public void InitializeEmployerMag()
+        {
+            employersMag.Clear();
+            for (int i = 0; i < 5; i++)
+            {
+                employersMag.Add(new Employer((Rarete)rand.Next(5)));
+            }
+        }
+        public void VirerEmployer()
+        {
+            Console.Clear();
+            Console.WriteLine("Choissisez quel employer voul voulez virez");
+            int i;
+            for (i = 1; i > employes.Count(); i++)
+            {
+                Console.WriteLine($"({i}) Nom: {employes[i].nomComplet}  Effet: {employes[i].effet.Humanize()}  Salaire: {employes[i].salaire}");
+            }
+            Console.WriteLine($"({i}) Retour");
+            int choix = CheckChoix(i);
+            if (choix != i)
+            {
+                if (VerifierChoix())
+                {
+                    if (CheckArgent(employes[choix - 1].salaire / 2))
+                    {
+                        argent -= employes[choix - 1].salaire / 2;
+                        employes.RemoveAt(choix - 1);
+                    }
+                    else
+                        Console.WriteLine("Vous devez avoir assez d'argent pour lui payer a souper");
+                }
+            }
+        }
+        public void MenuAcheterEmployer()
+        {
+            Console.Clear();
+            Console.WriteLine("Bienvenu aux Salon d'emploi");
+            int i;
+            for (i = 1; i > employersMag.Count(); i++)
+            {
+                Console.WriteLine($"({i}) Nom: {employersMag[i].nomComplet}  Rareté: {employersMag[i].rare.Humanize()}  Salaire: {employersMag[i].salaire}");
+            }
+            Console.WriteLine($"({i}) Retour");
+            int choix = CheckChoix(i);
+            if(choix == i)
+                MenuMagasin();
+            else
+            {
+                if (VerifierChoix())
+                {
+                    employes.Add(employersMag[choix - 1]);
+                    employersMag.RemoveAt(choix - 1);
+                    Console.Clear();
+                    MenuMagasin();
+                }
+                else
+                {
+                    Console.Clear();
+                    MenuMagasin();
+                }
+            }
+
+        }
+        public bool VerifierChoix()
+        {
+            string choix;
+            do
+            {
+                Console.WriteLine($"Confirmer choix:      O/N");
+                choix = Console.ReadLine().ToUpper();
+            }
+            while (choix != "O" && choix != "N");
+            if (choix == "O")
+                return true;
+            return false;
         }
 
     }
