@@ -18,7 +18,7 @@ namespace Restaurant
     {
         public Plats Commande { get; set; }
         public Etat etat { get; set; }
-        int satisfaction;
+        public int satisfaction { get; set; }
         string platPref;
         string platDeteste;
         public Random rand = new Random();

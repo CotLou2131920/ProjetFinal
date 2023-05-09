@@ -16,6 +16,7 @@ namespace Restaurant
         public void MenuMagasin()
         {
             Console.Clear();
+            AffichageInfo();
             Console.WriteLine("Bienvenu aux Marché");
             Console.WriteLine("(1) Engager un employer");
             Console.WriteLine("(2) Acheter un recette");
@@ -32,7 +33,8 @@ namespace Restaurant
         }
         public void MenuAcheterPlat()
         {
-
+            Console.Clear();
+            AffichageInfo();
             List<Plats> plats = VerifierPlatPasAcheter();
             Console.WriteLine("Bienvenue aux Marche noir");
             int i;
@@ -92,6 +94,8 @@ namespace Restaurant
         }
         public void MenuAcheterIngredient()
         {
+            Console.Clear();
+            AffichageInfo();
             Console.WriteLine("Bienvenue a l'epicerie");
             int i;
             for (i = 1; i < IngredientsPossibles.Count() + 1; i++)
@@ -150,6 +154,7 @@ namespace Restaurant
         public void VirerEmployer()
         {
             Console.Clear();
+            AffichageInfo();
             Console.WriteLine("Choissisez quel employer voul voulez virez");
             int i;
             for (i = 1; i > employes.Count(); i++)
@@ -175,6 +180,7 @@ namespace Restaurant
         public void MenuAcheterEmployer()
         {
             Console.Clear();
+            AffichageInfo();
             Console.WriteLine("Bienvenu aux Salon d'emploi");
             int i;
             for (i = 1; i > employersMag.Count(); i++)
@@ -202,19 +208,5 @@ namespace Restaurant
             }
 
         }
-        public bool VerifierChoix()
-        {
-            string choix;
-            do
-            {
-                Console.WriteLine($"Confirmer choix:      O/N");
-                choix = Console.ReadLine().ToUpper();
-            }
-            while (choix != "O" && choix != "N");
-            if (choix == "O")
-                return true;
-            return false;
-        }
-
     }
 }

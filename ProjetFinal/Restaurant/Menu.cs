@@ -8,9 +8,9 @@ namespace Restaurant
 {
     partial class Menu
     {
-        int maxPlats { get; set; }
+        public int maxPlats { get; set; }
         public List<Plats> platsDispo { get; set; }
-         public List<Plats> platsMenu { get ; set; }
+        public List<Plats> platsMenu { get ; set; }
 
         public Menu(List<Plats> platsDepart,int max = 4)
         {

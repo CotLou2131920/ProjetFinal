@@ -171,7 +171,7 @@ namespace Restaurant
                     } while (valide);
 
                 } while (valide);
-                ///////////////////////////////////////////////////////////////////
+                CheckManger();
                 Cuisson();
                 Console.Clear();
             }
@@ -210,9 +210,56 @@ namespace Restaurant
 
 
 
-
-
-
+        public void Cuisson()
+        {
+            for (int i = 0; i > clientJourne.Count(); i++)
+            {
+                if (clientJourne[i].etat == Etat.Attend)
+                {
+                    clientJourne[i].Commande.tempsCuisson--;
+                    if (clientJourne[i].Commande.tempsCuisson == 0)
+                        clientJourne[i].etat++;
+                }
+            }
+        }
+        public void CheckManger()
+        {
+            for (int i = 0; i > clientJourne.Count(); i++)
+            {
+                if (clientJourne[i].etat == Etat.Mange)
+                {
+                    clientJourne[i].Commande.tempsCuisson--;
+                    clientJourne[i].etat++;
+                    argent += clientJourne[i].Commande.prixMenu;
+                }
+            }
+        }
+        public void GererCote()
+        {
+            int satisfaction = 0;
+            foreach (Client c in clientJourne)
+            {
+                satisfaction += c.satisfaction;
+            }
+            cote += satisfaction;
+        }
+        public void AffichageInfo()
+        {
+            Console.WriteLine($"Argent: {argent}$   Employes: {employes.Count}/{maxEmployer}    Capacité maximum: {maxClient}   Cote Restaurant: {cote}/{CotePourUpgrade}\n\n\n");
+        }
+        public bool VerifierChoix()
+        {
+            string choix;
+            do
+            {
+                Console.WriteLine($"Confirmer choix:      O/N");
+                choix = Console.ReadLine().ToUpper();
+            }
+            while (choix != "O" && choix != "N");
+            if (choix == "O")
+                return true;
+            return false;
+        }
         public int CheckChoix(int max)
         {
             int choix;

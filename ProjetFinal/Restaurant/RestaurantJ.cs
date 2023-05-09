@@ -19,23 +19,25 @@ namespace Restaurant
         }
         public void MenuResto()
         {
+            Console.Clear();
+            AffichageInfo();
             int choix = 1;
             int i = 5;
             while (choix != 0 && choix != i)
             {
                 Console.WriteLine("(1) Menu du menu");
                 Console.WriteLine("(2) Magasin");
-                Console.WriteLine("(3) Afficher Inventaire");
+                Console.WriteLine("(3) Virer un employer");
                 Console.WriteLine("(4) Afficher Inventaire");
                 if (cote >= CotePourUpgrade)
                 {
                     Console.WriteLine("(5) Renovations");
-                    Console.WriteLine("(6) Retour");
+                    Console.WriteLine("(6) Commencer Journee");
                     i = 6;
                 }
                 else
                 {
-                    Console.WriteLine("(5) Retour");
+                    Console.WriteLine("(5) Commencer Journee");
                 }
 
                 Console.WriteLine("Rentre choix");
@@ -48,7 +50,7 @@ namespace Restaurant
                         case 2: MenuMagasin(); break;
                         case 3: VirerEmployer(); break;
                         case 4: AfficherInventaire(); break;
-                        case 5:; break;
+                        case 5: VraimentQuitter(); break;
                     }
                 }
                 else
@@ -60,7 +62,7 @@ namespace Restaurant
                         case 3: VirerEmployer(); break;
                         case 4: AfficherInventaire(); break;
                         case 5: UpgradeResto(); break;
-                        case 6:; break;
+                        case 6: VraimentQuitter(); break;
                     }
                 }
             }
@@ -68,22 +70,46 @@ namespace Restaurant
         public void VraimentQuitter()
         {
             string choix;
-            Console.WriteLine("Commencer Journee?   O/N");
-            do
+            try
             {
-                choix = Console.ReadLine().ToUpper();
-            } while (choix != "O" && choix != "N");
-            if (choix == "N")
-                MenuResto();
+                Console.WriteLine("Commencer Journee?   O/N");
+                do
+                {
+                    choix = Console.ReadLine().ToUpper();
+                } while (choix != "O" && choix != "N");
+                if (choix == "N")
+                    MenuResto();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Veuillez choisir (O)ui ou (N)on");
+                VraimentQuitter();
+            }
         }
         public void UpgradeResto()
         {
             if (cote >= CotePourUpgrade)
             {
                 Console.WriteLine($"La renovation coutera {CotePourUpgrade * 10}");
+                if(argent >= CotePourUpgrade * 10)
+                {
+                    if (VerifierChoix())
+                    {
+                        argent -= CotePourUpgrade * 10;
+                        Console.WriteLine("Le restaurant a été renover!!!!!!");
+                        maxClient *= 2;
+                        maxEmployer *= 2;
+                        menu.maxPlats += 2;
+                        CotePourUpgrade += 2;
+
+                        Console.WriteLine($"Vous pouvez maintenant avoir {maxClient} de clients assis dans votre restaurant\n");
+                        Console.WriteLine($"Vous pouvez maintenant avoir {maxEmployer} d'employers dans votre resaturant\n");
+                        Console.WriteLine($"Vous pouvez maintenant avoir {menu.maxPlats} plats sur votre menu\n");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                }
             }
-
-
         }
         public void IngredientsDepart()
         {
@@ -137,31 +163,34 @@ namespace Restaurant
             }
             return new Plats();
         }
-        public bool CheckDispoPlat(Plats platVoulu)
-        {
-            List<Ingredient> copieStock = stock;
-            bool ingredientExiste;
+        //public bool CheckDispoPlat(Plats platVoulu)
+        //{
+        //    List<Ingredient> copieStock = new List<Ingredient>();
+        //    foreach (Ingredient i in stock)
+        //    {
+        //        copieStock.Add(i);
+        //    }
+        //    bool ingredientExiste;
 
-            foreach (Ingredient p in platVoulu.ingredient)
-            {
-                ingredientExiste = false;
-                for (int i = 0; i < copieStock.Count; i++)
-                {
-                    if (p.nom == copieStock[i].nom)
-                    {
-                        copieStock.Remove(copieStock[i]);
-                        ingredientExiste = true;
-                        break;
-                    }
-                }
-                if (!ingredientExiste)
-                {
-                    return false;
-                }
-            }
-            stock = copieStock;
-            return true;
-        }
+        //    foreach (Ingredient p in platVoulu.ingredient)
+        //    {
+        //        ingredientExiste = false;
+        //        for (int i = 0; i < copieStock.Count; i++)
+        //        {
+        //            if (p.nom == copieStock[i].nom)
+        //            {
+        //                copieStock.Remove(copieStock[i]);
+        //                ingredientExiste = true;
+        //            }
+        //        }
+        //        if (!ingredientExiste)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    stock = copieStock;
+        //    return true;
+        //}
         public void AfficherInventaire()
         {
             var g = stock.GroupBy(i => i).OrderBy(group => group.Key.nom);
@@ -188,7 +217,6 @@ namespace Restaurant
             }
             return true;
         }
-        //verifier avec l'autre
         public void Cuisson()
         {
             for (int i = 0; i > clientJourne.Count(); i++)
