@@ -20,16 +20,16 @@ namespace Restaurant
         public void MenuResto()
         {
             int choix = 1;
-            while (choix != 0)
+            int i = 5;
+            while (choix != 0 && choix != i)
             {
-                int i = 5;
                 Console.WriteLine("(1) Menu du menu");
                 Console.WriteLine("(2) Magasin");
                 Console.WriteLine("(3) Afficher Inventaire");
                 Console.WriteLine("(4) Afficher Inventaire");
                 if (cote >= CotePourUpgrade)
                 {
-                    Console.WriteLine("(5) Retour");
+                    Console.WriteLine("(5) Renovations");
                     Console.WriteLine("(6) Retour");
                     i = 6;
                 }
