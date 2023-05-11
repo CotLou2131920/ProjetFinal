@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "2bflqO1o3ma8/pUKTEkT4tDNpEVncDcPRKXTflbrq9g7SsGwKMmR5K86Hi9OveT8u4YDIdJER/ohdHKTCZcKzQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\TestCalcul\\TestCalcul.csproj",
+  "dgSpecHash": "jR0TX+RzCw+Zh6HZ/O21sdhtUaSmUE/TeYJfrF2oV/oWxDfrgLwgQSsOMsbUGMxlhzCzc6JPjlADmxMNTpVuaw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\TestCalcul\\TestCalcul.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2131793\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
-    "C:\\Users\\2131793\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\2131793\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\2131793\\.nuget\\packages\\microsoft.net.test.sdk\\17.1.0\\microsoft.net.test.sdk.17.1.0.nupkg.sha512",
@@ -94,5 +93,15 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Les informations relatives au projet sont introuvables pour 'C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj'. Si vous utilisez Visual Studio, cela peut être dû au fait que le projet est déchargé ou qu'il ne fait pas partie de la solution actuelle. Dans ce cas, exécutez une restauration à partir de la ligne de commande. Sinon, il est possible que le fichier projet soit non valide ou que des cibles nécessaires à la restauration soient manquantes.",
+      "libraryId": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

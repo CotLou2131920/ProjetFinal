@@ -163,34 +163,6 @@ namespace Restaurant
             }
             return new Plats();
         }
-        //public bool CheckDispoPlat(Plats platVoulu)
-        //{
-        //    List<Ingredient> copieStock = new List<Ingredient>();
-        //    foreach (Ingredient i in stock)
-        //    {
-        //        copieStock.Add(i);
-        //    }
-        //    bool ingredientExiste;
-
-        //    foreach (Ingredient p in platVoulu.ingredient)
-        //    {
-        //        ingredientExiste = false;
-        //        for (int i = 0; i < copieStock.Count; i++)
-        //        {
-        //            if (p.nom == copieStock[i].nom)
-        //            {
-        //                copieStock.Remove(copieStock[i]);
-        //                ingredientExiste = true;
-        //            }
-        //        }
-        //        if (!ingredientExiste)
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    stock = copieStock;
-        //    return true;
-        //}
         public void AfficherInventaire()
         {
             var g = stock.GroupBy(i => i).OrderBy(group => group.Key.nom);

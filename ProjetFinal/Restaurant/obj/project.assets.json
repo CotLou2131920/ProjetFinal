@@ -3800,11 +3800,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\Restaurant\\Restaurant.csproj",
+      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\Restaurant\\Restaurant.csproj",
       "projectName": "Restaurant",
-      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\Restaurant\\Restaurant.csproj",
+      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\Restaurant\\Restaurant.csproj",
       "packagesPath": "C:\\Users\\2131793\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\Restaurant\\obj\\",
+      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\Restaurant\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibli\\bibli.csproj",
+      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibli\\bibli.csproj",
       "projectName": "bibli",
-      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibli\\bibli.csproj",
+      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibli\\bibli.csproj",
       "packagesPath": "C:\\Users\\2131793\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibli\\obj\\",
+      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibli\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

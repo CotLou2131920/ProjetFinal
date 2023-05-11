@@ -6593,11 +6593,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibliTests\\bibliTests.csproj",
+      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibliTests\\bibliTests.csproj",
       "projectName": "bibliTests",
-      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibliTests\\bibliTests.csproj",
+      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibliTests\\bibliTests.csproj",
       "packagesPath": "C:\\Users\\2131793\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibliTests\\obj\\",
+      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibliTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6617,8 +6617,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibli\\bibli.csproj": {
-              "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibli\\bibli.csproj"
+            "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibli\\bibli.csproj": {
+              "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibli\\bibli.csproj"
             }
           }
         }

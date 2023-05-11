@@ -8,15 +8,6 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
-      "Humanizer.Core/2.14.1": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/Humanizer.dll": {}
-        },
-        "runtime": {
-          "lib/net6.0/Humanizer.dll": {}
-        }
-      },
       "Microsoft.CodeCoverage/17.1.0": {
         "type": "package",
         "compile": {
@@ -1669,30 +1660,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
-      },
-      "BiblioCalculatrice/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "compile": {
-          "bin/placeholder/BiblioCalculatrice.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BiblioCalculatrice.dll": {}
-        }
-      },
-      "ProjetFinal/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "BiblioCalculatrice": "1.0.0",
-          "Humanizer.Core": "2.14.1"
-        },
-        "compile": {
-          "bin/placeholder/ProjetFinal.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/ProjetFinal.dll": {}
-        }
       }
     }
   },
@@ -1746,24 +1713,6 @@
         "coverlet-icon.png",
         "coverlet.collector.3.1.2.nupkg.sha512",
         "coverlet.collector.nuspec"
-      ]
-    },
-    "Humanizer.Core/2.14.1": {
-      "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
-      "type": "package",
-      "path": "humanizer.core/2.14.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "humanizer.core.2.14.1.nupkg.sha512",
-        "humanizer.core.nuspec",
-        "lib/net6.0/Humanizer.dll",
-        "lib/net6.0/Humanizer.xml",
-        "lib/netstandard1.0/Humanizer.dll",
-        "lib/netstandard1.0/Humanizer.xml",
-        "lib/netstandard2.0/Humanizer.dll",
-        "lib/netstandard2.0/Humanizer.xml",
-        "logo.png"
       ]
     },
     "Microsoft.CodeCoverage/17.1.0": {
@@ -6186,24 +6135,14 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
-    },
-    "BiblioCalculatrice/1.0.0": {
-      "type": "project",
-      "path": "../BiblioCalculatrice/BiblioCalculatrice/BiblioCalculatrice.csproj",
-      "msbuildProject": "../BiblioCalculatrice/BiblioCalculatrice/BiblioCalculatrice.csproj"
-    },
-    "ProjetFinal/1.0.0": {
-      "type": "project",
-      "path": "../ProjetFinal/ProjetFinal.csproj",
-      "msbuildProject": "../ProjetFinal/ProjetFinal.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj",
       "MSTest.TestAdapter >= 2.2.8",
       "MSTest.TestFramework >= 2.2.8",
       "Microsoft.NET.Test.Sdk >= 17.1.0",
-      "ProjetFinal >= 1.0.0",
       "coverlet.collector >= 3.1.2"
     ]
   },
@@ -6214,11 +6153,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\TestCalcul\\TestCalcul.csproj",
+      "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\TestCalcul\\TestCalcul.csproj",
       "projectName": "TestCalcul",
-      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\TestCalcul\\TestCalcul.csproj",
+      "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\TestCalcul\\TestCalcul.csproj",
       "packagesPath": "C:\\Users\\2131793\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\TestCalcul\\obj\\",
+      "outputPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\TestCalcul\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6238,8 +6177,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj": {
-              "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj"
+            "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj": {
+              "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj"
             }
           }
         }
@@ -6289,5 +6228,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Les informations relatives au projet sont introuvables pour 'C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj'. Si vous utilisez Visual Studio, cela peut être dû au fait que le projet est déchargé ou qu'il ne fait pas partie de la solution actuelle. Dans ce cas, exécutez une restauration à partir de la ligne de commande. Sinon, il est possible que le fichier projet soit non valide ou que des cibles nécessaires à la restauration soient manquantes.",
+      "libraryId": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\ProjetFinal\\ProjetFinal.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

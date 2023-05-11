@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj": {}
+    "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj": {
+    "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj",
+        "projectUniqueName": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj",
         "projectName": "BiblioCalculatrice",
-        "projectPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj",
+        "projectPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj",
         "packagesPath": "C:\\Users\\2131793\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\obj\\",
+        "outputPath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

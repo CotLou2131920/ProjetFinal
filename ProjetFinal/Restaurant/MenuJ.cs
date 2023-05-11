@@ -33,7 +33,7 @@ namespace Restaurant
         }
         public void AfficherMenu()
         {
-            foreach(Plats p in platsMenu)
+            foreach (Plats p in platsMenu)
             {
                 Console.WriteLine($"Nom: {p.nom} Prix Actuel: {p.prixMenu}$");
                 Console.WriteLine(p.AfficherIngredients());
@@ -44,20 +44,20 @@ namespace Restaurant
         }
         public void AjouterPlat()
         {
-            if(platsMenu.Count() == maxPlats)
+            if (platsMenu.Count() == maxPlats)
             {
                 Console.WriteLine("Vous avex atteint le maximum de plat sur le menu");
                 Console.WriteLine("Pour avoir plus de place ameliorexz votre restaurant");
-                MenuMenu();              
+                MenuMenu();
             }
             else
             {
                 List<Plats> plats = VerifierPlatsPasAjouter();
                 Console.WriteLine("Quel Plat Voulez vous Ajouter aux menu?");
                 int i;
-                for (i = 1; i < plats.Count()+1; i++)
+                for (i = 1; i < plats.Count() + 1; i++)
                 {
-                    Console.WriteLine($"({i}) Nom: {plats[i-1].nom} PrixCoutant: {plats[i - 1].prixCoutant}");
+                    Console.WriteLine($"({i}) Nom: {plats[i - 1].nom} PrixCoutant: {plats[i - 1].prixCoutant}");
                     Console.WriteLine(plats[i - 1].AfficherIngredients());
                 }
                 Console.WriteLine($"({i}) Retour");
@@ -67,8 +67,8 @@ namespace Restaurant
                     MenuMenu();
                 else
                 {
-                    platsMenu.Add(plats[choix-1]);
-                    Console.WriteLine($"{plats[choix-1].nom} a ete ajouter au menu");
+                    platsMenu.Add(plats[choix - 1]);
+                    Console.WriteLine($"{plats[choix - 1].nom} a ete ajouter au menu");
                     Console.ReadLine();
                     Console.Clear();
                     MenuMenu();
@@ -79,7 +79,7 @@ namespace Restaurant
         public List<Plats> VerifierPlatsPasAjouter()
         {
             List<Plats> plats = new List<Plats>();
-            for(int i = 0;i < platsDispo.Count();i++)
+            for (int i = 0; i < platsDispo.Count(); i++)
             {
                 bool check = true;
                 foreach (Plats plat in platsMenu)
@@ -105,7 +105,7 @@ namespace Restaurant
             else
             {
                 int i;
-                for (i = 1; i < platsMenu.Count()+1; i++)
+                for (i = 1; i < platsMenu.Count() + 1; i++)
                 {
                     Console.WriteLine($"({i}) Nom: {platsMenu[i - 1].nom} PrixCoutant: {platsMenu[i - 1].prixCoutant}$");
                     Console.WriteLine(platsMenu[i - 1].AfficherIngredients());
@@ -141,9 +141,9 @@ namespace Restaurant
 
             Console.WriteLine("Quel prix voulez vous changer");
             int i;
-            for (i = 1; i < platsMenu.Count()+1; i++)
+            for (i = 1; i < platsMenu.Count() + 1; i++)
             {
-                Console.WriteLine($"({i}) Nom: {platsMenu[i-1].nom} Prix Actuel: {platsMenu[i - 1].prixMenu}$");
+                Console.WriteLine($"({i}) Nom: {platsMenu[i - 1].nom} Prix Actuel: {platsMenu[i - 1].prixMenu}$");
             }
             Console.WriteLine($"({i}) Retour\n");
             int choix = CheckChoix(i);
@@ -194,7 +194,7 @@ namespace Restaurant
             try
             {
                 string entree = Console.ReadLine();
-                if(Regex.IsMatch(entree, pattern))
+                if (Regex.IsMatch(entree, pattern))
                 {
                     choix = Convert.ToDouble(entree, provider);
                     if (choix < 0)

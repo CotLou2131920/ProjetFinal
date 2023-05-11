@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RXcgaGkk0ly2rXfIqRkiPE0LdtCEsnjuWpApdDMkCcOUQrdW3VebgSLx8aaXGYWXf36yCDFY9/bsl68jnY9NVQ==",
+  "dgSpecHash": "8Q0bJ8Ra2Ycr5+BkkhfWocaj23e4eTkDiDQf1MxgCQ6U7XubY7IOBDkh3F3uNHeKfK0y8/EANV7JpfYJ5ajRNQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj",
+  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\ProjetFinal\\BiblioCalculatrice\\BiblioCalculatrice\\BiblioCalculatrice.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

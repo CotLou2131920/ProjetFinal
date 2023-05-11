@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IMQQEemJ2O3usoyHn/8UeB9VtB+7Orh1r5bKxFUg7GTj6kFWOwR9fCQHrEpt9PJjreI8aoZuDeo+GgDdnhpDOw==",
+  "dgSpecHash": "etq11hTYTwRVPNTLnOVyGcO47jLWRMOAQFvf8mcxVuDA00/gGd8PThm0RsV6Uh/uDmtKGCeSRLhjNC3T4FhEAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibliTests\\bibliTests.csproj",
+  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibliTests\\bibliTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2131793\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\2131793\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

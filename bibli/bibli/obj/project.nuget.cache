@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8UN1iQUbX/LjibFq7n3xCCstk5Yxg/FuAFk5JOHmFe77OSVGkgYIOxsykYLqaZFI3ACEEx7vudNcxEYbTL/TmA==",
+  "dgSpecHash": "G80XkWjeY94ge3WpnRN9rjiH9DJufBYHkDdCS9/HZ3+t8g5G9B54wES0lbRFkGoRH/SX2OFZKlvRXQyF9LXsUA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\Prog2\\ProjetFinal\\bibli\\bibli\\bibli.csproj",
+  "projectFilePath": "C:\\Users\\2131793\\Documents\\Code\\ProjetFinal\\bibli\\bibli\\bibli.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
