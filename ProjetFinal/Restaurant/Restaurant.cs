@@ -172,13 +172,13 @@ namespace Restaurant
         {
             InitializeEmployerMag();
             MenuResto();
+            double argentDebut = argent;
+            int coteDebut = cote;
 
             int nbClientJournee = rand.Next(maxClient, maxClient * 2);
             clientJourne = new Client[nbClientJournee];
             for (int i = 0; i < nbClientJournee; i++)
                 clientJourne[i] = new Client((Rarete)rand.Next(0, 5), menu);
-
-
 
             bool JourneFini = true;
             while (JourneFini)
@@ -216,8 +216,34 @@ namespace Restaurant
                 
                 Console.Clear();
             }
+            FinDeJournee(argentDebut, coteDebut);
         }
-
+        public void FinDeJournee(double argentDebut, int coteDebut)
+        {
+            Console.Clear();
+            Console.WriteLine($"Aujourdui, vous avez: \n" +
+                $"servi {clientJourne.Count()} client,\n" +
+                $"Generer (ou perdu) {argent-argentDebut}$\n" +
+                $"Monter (ou baisser) votre cote de {cote-coteDebut}\n");
+            if (argent - argentDebut > 0 && cote - coteDebut > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Felicitations!!!!!!!!");
+                Console.ResetColor();
+            }
+            else if(argent - argentDebut > 0 || cote - coteDebut > 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Bravo");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("...");
+                Console.ResetColor();
+            }
+        }
         public void AssignePlatClient(int clientChoisi)
         {
             clientJourne[clientChoisi].Commande = menu.platsMenu[rand.Next(menu.platsMenu.Count)];
