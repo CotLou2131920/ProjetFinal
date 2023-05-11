@@ -42,7 +42,11 @@ namespace Restaurant
 
         static void AjouterNom()
         {
-            string fichierNomFamille = "nom_famille.txt";
+            string CD = Directory.GetCurrentDirectory();
+            CD = CD.Replace("bin\\Debug\\net6.0", "");
+
+
+            string fichierNomFamille = CD+"nom_famille.txt";
             
             using (StreamReader reader = new StreamReader(fichierNomFamille))
             {
@@ -56,7 +60,10 @@ namespace Restaurant
 
         static void AjouterPrenom()
         {
-            string fichierPrenom = "Prenom.txt";
+            string CD = Directory.GetCurrentDirectory();
+            CD = CD.Replace("bin\\Debug\\net6.0", "");
+
+            string fichierPrenom = CD+"Prenom.txt";
 
             using (StreamReader reader = new StreamReader(fichierPrenom))
             {

@@ -28,10 +28,14 @@ namespace Restaurant
             maxEmployer = 3;
             maxClient = 5;
 
+            string CD = Directory.GetCurrentDirectory();
+            CD = CD.Replace("bin\\Debug\\net6.0", "");
+
+
             IngredientsPossibles = new List<Ingredient>();
-            IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>("json_ingredient.json");
+            IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>(CD+"json_ingredient.json");
             PlatsPossibles = new List<Plats>();
-            PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>("json_plats.json");
+            PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>(CD+"json_plats.json");
             menu = new Menu(PlatsDepart());
             employes = new List<Employer>();
             employersMag = new List<Employer>();
@@ -47,6 +51,7 @@ namespace Restaurant
 
         public int ChoisiEmployer()
         {
+
             Console.WriteLine("Quelle employer voulez vous emvoyer ?\n");
             int i = 0;
             for (i = 0; i < employes.Count; i++)
@@ -59,7 +64,11 @@ namespace Restaurant
                 Cuisson();
                 RemetActionEmloye();
                 Console.Clear();
-                choixEmploye = ChoisiEmployer();
+                if (VerifieCLientPartie())
+                {
+                    LanceJournee();
+                }
+                    choixEmploye = ChoisiEmployer();
             }
             if (employes[choixEmploye - 1].action <= 0)
             {
@@ -123,6 +132,18 @@ namespace Restaurant
             return valide;
         }
 
+        public bool VerifieCLientPartie()
+        {
+            foreach (Client c in clientJourne)
+            {
+                if (c.etat != Etat.Partie)
+                    return false;
+            }
+            return true;
+        }
+
+
+
         public bool VerifieClientAssit()
         {
             bool valide = true;
@@ -175,43 +196,55 @@ namespace Restaurant
             double argentDebut = argent;
             int coteDebut = cote;
 
+
+
             int nbClientJournee = rand.Next(maxClient, maxClient * 2);
             clientJourne = new Client[nbClientJournee];
             for (int i = 0; i < nbClientJournee; i++)
                 clientJourne[i] = new Client((Rarete)rand.Next(0, 5), menu);
-
+            int choixAction = 1;
+            int choixEmploye = 1;
             bool JourneFini = true;
             while (JourneFini)
             {
                 bool valide = true;
                 do
                 {
-                    int choixEmploye = ChoisiEmployer();
-                    int choixAction = ChoisirAction(choixEmploye);
-                    do
+                    if (VerifieCLientPartie())
                     {
-                        int clientChoisi = rand.Next(nbClientJournee);
-                        if (clientJourne[clientChoisi].etat == Etat.Pret && choixAction == 1)
-                        {
-                            employes[choixEmploye - 1].action--;
-                            clientJourne[clientChoisi].etat++;
-                            valide = false;
-                        }
-                        else if (clientJourne[clientChoisi].etat == Etat.Assit && choixAction == 2)
-                        {
-                            AssignePlatClient(clientChoisi);
-                            employes[choixEmploye - 1].action--;
-                            clientJourne[clientChoisi].etat++;
-                            valide = false;
-                        }
-                        else if (clientJourne[clientChoisi].etat == Etat.Fini && choixAction == 3)
-                        {
-                            employes[choixEmploye - 1].action--;
-                            clientJourne[clientChoisi].etat++;
-                            valide = false;
-                        }
-                    } while (valide);
+                        JourneFini = false;
+                        valide = false;
+                    }
+                    else
+                    {
+                        choixEmploye = ChoisiEmployer();
+                        choixAction = ChoisirAction(choixEmploye);
 
+
+                        do
+                        {
+                            int clientChoisi = rand.Next(nbClientJournee);
+                            if (clientJourne[clientChoisi].etat == Etat.Pret && choixAction == 1)
+                            {
+                                employes[choixEmploye - 1].action--;
+                                clientJourne[clientChoisi].etat++;
+                                valide = false;
+                            }
+                            else if (clientJourne[clientChoisi].etat == Etat.Assit && choixAction == 2)
+                            {
+                                AssignePlatClient(clientChoisi);
+                                employes[choixEmploye - 1].action--;
+                                clientJourne[clientChoisi].etat++;
+                                valide = false;
+                            }
+                            else if (clientJourne[clientChoisi].etat == Etat.Fini && choixAction == 3)
+                            {
+                                employes[choixEmploye - 1].action--;
+                                clientJourne[clientChoisi].etat++;
+                                valide = false;
+                            }
+                        } while (valide);
+                    }
                 } while (valide);
 
                 Console.Clear();
@@ -243,6 +276,8 @@ namespace Restaurant
                 Console.WriteLine("...");
                 Console.ResetColor();
             }
+            Console.ReadLine();
+            LanceJournee();
         }
         public void AssignePlatClient(int clientChoisi)
         {

@@ -16,7 +16,10 @@ namespace Restaurant
         [JsonConstructor]
         public Plats(string nom, int tempsCuisson,int prixAchat, string[] ingredients)
         {
-            List<Ingredient> IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>("json_ingredient.json");
+            string CD = Directory.GetCurrentDirectory();
+            CD = CD.Replace("bin\\Debug\\net6.0", "");
+
+            List<Ingredient> IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>(CD+"json_ingredient.json");
             this.nom = nom;
             this.tempsCuisson = tempsCuisson;
             PrixAchat = prixAchat;
