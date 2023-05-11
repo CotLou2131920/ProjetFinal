@@ -51,9 +51,9 @@ namespace Restaurant
             int i = 0;
             for (i = 0; i < employes.Count; i++)
                 Console.WriteLine($"({i + 1}) " + employes[i]);
-            Console.WriteLine($"Pour passer un tour ({i+1})");
-            int choixEmploye = CheckChoix(employes.Count+1);
-            if (choixEmploye == i+1)
+            Console.WriteLine($"Pour passer un tour ({i + 1})");
+            int choixEmploye = CheckChoix(employes.Count + 1);
+            if (choixEmploye == i + 1)
             {
                 CheckManger();
                 Cuisson();
@@ -100,7 +100,7 @@ namespace Restaurant
             {
                 choixAction = ChoisirAction(choixEmploye);
             }
-            
+
 
             return choixAction;
         }
@@ -213,7 +213,7 @@ namespace Restaurant
                     } while (valide);
 
                 } while (valide);
-                
+
                 Console.Clear();
             }
         }
@@ -226,7 +226,7 @@ namespace Restaurant
         }
         public void RemetActionEmloye()
         {
-            for(int i = 0; i < employes.Count; i++)
+            for (int i = 0; i < employes.Count; i++)
                 employes[i].action = employes[i].actionMax;
         }
 
@@ -327,7 +327,7 @@ namespace Restaurant
                 Console.WriteLine(ex.Message);
                 choix = CheckChoix(max);
                 return choix;
-            } 
+            }
 
         }
 
