@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Restaurant
 {
@@ -111,7 +113,7 @@ namespace Restaurant
                 Console.WriteLine($"({i}) Retour");
                 int choix = CheckChoix(i);
 
-                if (choix == i + 1)
+                if (choix == i)
                     MenuMenu();
                 else
                 {
@@ -139,13 +141,13 @@ namespace Restaurant
 
             Console.WriteLine("Quel prix voulez vous changer");
             int i;
-            for (i = 1; i < platsMenu.Count(); i++)
+            for (i = 1; i < platsMenu.Count()+1; i++)
             {
                 Console.WriteLine($"({i}) Nom: {platsMenu[i-1].nom} Prix Actuel: {platsMenu[i - 1].prixMenu}$");
             }
             Console.WriteLine($"({i}) Retour\n");
             int choix = CheckChoix(i);
-            if (choix == i + 1)
+            if (choix == i)
                 MenuMenu();
             else
                 ModifierPrix(choix - 1);
@@ -155,7 +157,7 @@ namespace Restaurant
             Console.WriteLine("Astuce: Un client ne seras pas content de payer trop cher pour un plat,\n" +
                 "        mais il serait tres content de payer moins cher\n\n\n\n");
             Console.WriteLine("Entrez le nouveaux prix");
-            int prix = CheckChoix(10000);
+            double prix = CheckNouveauPrix();
             platsMenu[choix].prixMenu = prix;
             Console.WriteLine("Le prix a ete changer");
             Console.ReadLine();
@@ -164,9 +166,10 @@ namespace Restaurant
         }
         public int CheckChoix(int max)
         {
-            int choix = Convert.ToInt32(Console.ReadLine());
+            int choix;
             try
             {
+                choix = Convert.ToInt32(Console.ReadLine());
                 if (choix > max || choix < 0)
                 {
                     throw new Exception("Le chiffre rentrer est incorrect");
@@ -178,6 +181,41 @@ namespace Restaurant
                 Console.WriteLine(ex.Message);
                 choix = CheckChoix(max);
                 return choix;
+            }
+
+        }
+        public double CheckNouveauPrix()
+        {
+            NumberFormatInfo provider = new NumberFormatInfo();
+            provider.NumberDecimalSeparator = ".";
+            provider.NumberGroupSeparator = ",";
+            double choix;
+            string pattern = @"^\d+(\.\d{1,2})?$";
+            try
+            {
+                string entree = Console.ReadLine();
+                if(Regex.IsMatch(entree, pattern))
+                {
+                    choix = Convert.ToDouble(entree, provider);
+                    if (choix < 0)
+                    {
+                        throw new Exception("Le chiffre rentrer est incorrect");
+                    }
+                    else
+                    {
+                        return choix;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Le nouveau montant doit etre un chiffre avec un maximum de 2 chiffre apres le point");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                double i = CheckNouveauPrix();
+                return i;
             }
 
         }
