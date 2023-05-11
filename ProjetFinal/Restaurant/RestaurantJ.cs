@@ -216,40 +216,6 @@ namespace Restaurant
                 stock.Remove(i);
             }
             return true;
-        }
-        
-        {
-            for (int i = 0; i > clientJourne.Count(); i++)
-            {
-                if (clientJourne[i].etat == Etat.Attend)
-                {
-                    clientJourne[i].Commande.tempsCuisson--;
-                    if (clientJourne[i].Commande.tempsCuisson == 0)
-                        clientJourne[i].etat++;
-                }
-            }
-        }
-        {
-            for (int i = 0; i > clientJourne.Count(); i++)
-            {
-                if (clientJourne[i].etat == Etat.Attend)
-                {
-                    clientJourne[i].Commande.tempsCuisson--;
-                    if (clientJourne[i].Commande.tempsCuisson == 0)
-                        clientJourne[i].etat++;
-                }
-            }
-        }
-        {
-            for (int i = 0; i > clientJourne.Count(); i++)
-            {
-                if (clientJourne[i].etat == Etat.Attend)
-                {
-                    clientJourne[i].Commande.tempsCuisson--;
-                    if (clientJourne[i].Commande.tempsCuisson == 0)
-                        clientJourne[i].etat++;
-                }
-            }
-        }
+        }      
     }
 }
