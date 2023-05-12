@@ -165,6 +165,9 @@ namespace Restaurant
         }
         public void AfficherInventaire()
         {
+            Console.Clear();
+            AffichageInfo();
+            Console.WriteLine("INVENTAIRE:");
             var g = stock.GroupBy(i => i).OrderBy(group => group.Key.nom);
 
             foreach (var grp in g)
@@ -172,6 +175,7 @@ namespace Restaurant
                 if (grp.Key.nom != "")
                     Console.WriteLine(grp.Key.nom + ": " + grp.Count());
             }
+            Console.ReadLine();
         }
         public bool CheckAssezIngredients(Plats p)
         {

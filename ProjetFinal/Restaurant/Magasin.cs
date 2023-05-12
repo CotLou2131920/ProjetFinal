@@ -109,12 +109,16 @@ namespace Restaurant
                 MenuMagasin();
             else
             {
-                if (CheckArgent(IngredientsPossibles[choix - 1].prix))
+                Console.WriteLine("Combien Voulez vous en acheter?");
+                int num = CheckChoix(100);
+                if (CheckArgent(IngredientsPossibles[choix - 1].prix*num))
                 {
+                    Console.WriteLine($"Acheter {num} {IngredientsPossibles[choix - 1].nom}(s) pour {IngredientsPossibles[choix - 1].prix * num}$");
                     if (VerifierChoix())
                     {
-                        stock.Add(IngredientsPossibles[choix - 1]);
-                        argent -= IngredientsPossibles[choix - 1].prix;
+                        for (int x = 0; x < num; x++)
+                            stock.Add(IngredientsPossibles[choix - 1]);
+                        argent -= IngredientsPossibles[choix - 1].prix*num;
                         Console.WriteLine($"{IngredientsPossibles[choix - 1].nom} a ete ajouter a l'inventaire");
                         Console.ReadLine();
                         Console.Clear();
@@ -155,11 +159,11 @@ namespace Restaurant
         {
             Console.Clear();
             AffichageInfo();
-            Console.WriteLine("Choissisez quel employer voul voulez virez");
+            Console.WriteLine("Choissisez quel employer vous voulez virez");
             int i;
-            for (i = 1; i > employes.Count(); i++)
+            for (i = 1; i < employes.Count()+1; i++)
             {
-                Console.WriteLine($"({i}) Nom: {employes[i].nomComplet}  Effet: {employes[i].effet.Humanize()}  Salaire: {employes[i].salaire}");
+                Console.WriteLine($"({i}) Nom: {employes[i-1].nomComplet}  Effet: {employes[i-1].effet.Humanize()}  Salaire: {employes[i-1].salaire}");
             }
             Console.WriteLine($"({i}) Retour");
             int choix = CheckChoix(i);
