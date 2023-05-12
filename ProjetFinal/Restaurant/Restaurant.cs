@@ -33,9 +33,9 @@ namespace Restaurant
 
 
             IngredientsPossibles = new List<Ingredient>();
-            IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>(CD+"json_ingredient.json");
+            IngredientsPossibles = JsonFileLoader.ChargerFichier<List<Ingredient>>(CD + "json_ingredient.json");
             PlatsPossibles = new List<Plats>();
-            PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>(CD+"json_plats.json");
+            PlatsPossibles = JsonFileLoader.ChargerFichier<List<Plats>>(CD + "json_plats.json");
             menu = new Menu(PlatsDepart());
             employes = new List<Employer>();
             employersMag = new List<Employer>();
@@ -49,6 +49,92 @@ namespace Restaurant
 
         }
 
+        public void LanceJournee()
+        {
+            InitializeEmployerMag();
+            MenuResto();
+            double argentDebut = argent;
+            int coteDebut = cote;
+
+
+
+            int nbClientJournee = rand.Next(maxClient, maxClient * 2);
+            clientJourne = new Client[nbClientJournee];
+            for (int i = 0; i < nbClientJournee; i++)
+                clientJourne[i] = new Client((Rarete)rand.Next(0, 5), menu);
+            int choixAction = 1;
+            int choixEmploye = 1;
+            bool JourneFini = true;
+            while (JourneFini)
+            {
+                bool valide = true;
+                do
+                {
+                    if (VerifieCLientPartie())
+                    {
+                        JourneFini = false;
+                        valide = false;
+                    }
+                    else
+                    {
+                        do
+                        {
+                            choixEmploye = ChoisiEmployer();
+                            choixAction = ChoisirAction(choixEmploye);
+                        } while (choixAction == 4);
+
+
+                        do
+                        {
+                            int clientChoisi = rand.Next(nbClientJournee);
+                            if (clientJourne[clientChoisi].etat == Etat.Pret && choixAction == 1)
+                            {
+                                employes[choixEmploye - 1].action--;
+                                clientJourne[clientChoisi].etat++;
+                                valide = false;
+                            }
+                            else if (clientJourne[clientChoisi].etat == Etat.Assit && choixAction == 2)
+                            {
+                                if (employes[choixEmploye-1].effet ==  Effet.maladroit && CheckEmployerMaladroit())
+                                {
+                                    Console.WriteLine($"Oups l'employer {employes[choixEmploye-1].nomComplet} à oublier la commande\nAppuyer sur n'importe quel touche pour continuer");
+                                    Console.ReadKey();
+                                    employes[choixEmploye - 1].action--;
+                                    valide = false;
+                                }
+                                else
+                                {
+                                    
+                                    AssignePlatClient(clientChoisi);
+                                    if (clientJourne[clientChoisi].Commande.nom == clientJourne[clientChoisi].platPref)
+                                        clientJourne[clientChoisi].satisfaction += 2;
+                                    else if (clientJourne[clientChoisi].Commande.nom == clientJourne[clientChoisi].platDeteste)
+                                        clientJourne[clientChoisi].satisfaction--;
+                                    else
+                                        clientJourne[clientChoisi].satisfaction++;
+                                    employes[choixEmploye - 1].action--;
+                                    clientJourne[clientChoisi].etat++;
+                                    valide = false;
+                                }
+                            }
+                            else if (clientJourne[clientChoisi].etat == Etat.Fini && choixAction == 3)
+                            {
+                                employes[choixEmploye - 1].action--;
+                                clientJourne[clientChoisi].etat++;
+                                valide = false;
+                            }
+                            if (employes[choixEmploye - 1].effet == Effet.qualifie)
+                                clientJourne[clientChoisi].satisfaction++;
+                        } while (valide);
+                    }
+                } while (valide);
+
+                Console.Clear();
+            }
+            FinDeJournee(argentDebut, coteDebut);
+        }
+
+       
         public int ChoisiEmployer()
         {
 
@@ -68,7 +154,7 @@ namespace Restaurant
                 {
                     LanceJournee();
                 }
-                    choixEmploye = ChoisiEmployer();
+                choixEmploye = ChoisiEmployer();
             }
             if (employes[choixEmploye - 1].action <= 0)
             {
@@ -94,8 +180,7 @@ namespace Restaurant
             if (choixAction == 4)
             {
                 Console.Clear();
-                choixEmploye = ChoisiEmployer();
-                choixAction = ChoisirAction(choixEmploye);
+                return 4;
             }
             else if (choixAction == 1 && VerfieClientPret())
             {
@@ -189,82 +274,20 @@ namespace Restaurant
             return valide;
         }
 
-        public void LanceJournee()
-        {
-            InitializeEmployerMag();
-            MenuResto();
-            double argentDebut = argent;
-            int coteDebut = cote;
-
-
-
-            int nbClientJournee = rand.Next(maxClient, maxClient * 2);
-            clientJourne = new Client[nbClientJournee];
-            for (int i = 0; i < nbClientJournee; i++)
-                clientJourne[i] = new Client((Rarete)rand.Next(0, 5), menu);
-            int choixAction = 1;
-            int choixEmploye = 1;
-            bool JourneFini = true;
-            while (JourneFini)
-            {
-                bool valide = true;
-                do
-                {
-                    if (VerifieCLientPartie())
-                    {
-                        JourneFini = false;
-                        valide = false;
-                    }
-                    else
-                    {
-                        choixEmploye = ChoisiEmployer();
-                        choixAction = ChoisirAction(choixEmploye);
-
-
-                        do
-                        {
-                            int clientChoisi = rand.Next(nbClientJournee);
-                            if (clientJourne[clientChoisi].etat == Etat.Pret && choixAction == 1)
-                            {
-                                employes[choixEmploye - 1].action--;
-                                clientJourne[clientChoisi].etat++;
-                                valide = false;
-                            }
-                            else if (clientJourne[clientChoisi].etat == Etat.Assit && choixAction == 2)
-                            {
-                                AssignePlatClient(clientChoisi);
-                                employes[choixEmploye - 1].action--;
-                                clientJourne[clientChoisi].etat++;
-                                valide = false;
-                            }
-                            else if (clientJourne[clientChoisi].etat == Etat.Fini && choixAction == 3)
-                            {
-                                employes[choixEmploye - 1].action--;
-                                clientJourne[clientChoisi].etat++;
-                                valide = false;
-                            }
-                        } while (valide);
-                    }
-                } while (valide);
-
-                Console.Clear();
-            }
-            FinDeJournee(argentDebut, coteDebut);
-        }
         public void FinDeJournee(double argentDebut, int coteDebut)
         {
             Console.Clear();
             Console.WriteLine($"Aujourdui, vous avez: \n" +
                 $"servi {clientJourne.Count()} client,\n" +
-                $"Generer (ou perdu) {argent-argentDebut}$\n" +
-                $"Monter (ou baisser) votre cote de {cote-coteDebut}\n");
+                $"Generer (ou perdu) {argent - argentDebut}$\n" +
+                $"Monter (ou baisser) votre cote de {cote - coteDebut}\n");
             if (argent - argentDebut > 0 && cote - coteDebut > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Felicitations!!!!!!!!");
                 Console.ResetColor();
             }
-            else if(argent - argentDebut > 0 || cote - coteDebut > 0)
+            else if (argent - argentDebut > 0 || cote - coteDebut > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Bravo");
@@ -285,6 +308,8 @@ namespace Restaurant
             if (!CheckAssezIngredients(clientJourne[clientChoisi].Commande))
                 AssignePlatClient(clientChoisi);
         }
+
+        
         public void RemetActionEmloye()
         {
             for (int i = 0; i < employes.Count; i++)
@@ -352,6 +377,12 @@ namespace Restaurant
             {
                 satisfaction += c.satisfaction;
             }
+            foreach (Employer e in employes)
+            {
+                if (e.effet == Effet.polie)
+                    satisfaction++;
+                    
+            }
             cote += satisfaction;
         }
         public void AffichageInfo()
@@ -371,6 +402,17 @@ namespace Restaurant
                 return true;
             return false;
         }
+
+        
+        public bool CheckEmployerMaladroit()
+        {
+            int i = rand.Next(0, 5);
+            bool valide = false;
+            if (i == 0)
+                valide = true;
+            return valide;
+        }
+
         public int CheckChoix(int max)
         {
             int choix;

@@ -20,8 +20,8 @@ namespace Restaurant
         public Plats Commande { get; set; }
         public Etat etat { get; set; }
         public int satisfaction { get; set; }
-        string platPref;
-        string platDeteste;
+        public string platPref { get; set; }
+        public string platDeteste { get; set; }
         public Random rand = new Random();
 
         public Client(Rarete rarete, Menu menu) : base(rarete)
