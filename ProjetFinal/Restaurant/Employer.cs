@@ -9,14 +9,14 @@ namespace Restaurant
     enum Effet
     {
         rien,
-        maladroit, // 25% Oublie commande 
-        impolie, // - 5% trouver bon plat
-        competant, // Rien
+        maladroit, // 25% Oublie commande V
+        impolie, //  20% bon plat || 50% correct || 30% mauvais
+        competant, // Rien V
         Bon, // 40% bon plats || 50% correct || 10% mauvais
         Chef, // +1$ PrixCoutant chaque plats 
-        polie, // +1 Cote restaurant 
-        Rapide, // +1 Action
-        qualifie // +1 satisfaction
+        polie, // +1 Cote restaurant V
+        Rapide, // +1 Action V
+        qualifie // +1 satisfaction V
 
     }
     partial class Employer : Personne
